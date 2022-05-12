@@ -14,7 +14,6 @@ CREATE TABLE Vehicule (
 	idcompte serial,
 	statusAssociation varchar(50),
 	FOREIGN KEY (idCompte) REFERENCES Compte (idCompte),
-	
 );
 
 INSERT INTO Vehicule VALUES ('AA123AA', 'Mercedes Benz', 'CLA', 'Noir', 1,'Permanent');
@@ -36,16 +35,6 @@ INSERT INTO Compte (email, mdp, nom, prenom, age, estClient, estGerant, estAdmin
 INSERT INTO Compte (email, mdp, nom, prenom, age, estClient, estGerant, estAdministrateur, immatriculation) VALUES ('jean@gmail.com', '456', 'Mathieu', 'Jean', 21, TRUE, FALSE, FALSE, NULL);
 INSERT INTO Compte (email, mdp, nom, prenom, age, estClient, estGerant, estAdministrateur, immatriculation) VALUES ('admin@gmail.com', '123456', 'Drommer', 'Fabien', 21, FALSE, FALSE, TRUE, NULL);
 INSERT INTO Compte (email, mdp, nom, prenom, age, estClient, estGerant, estAdministrateur, immatriculation) VALUES ('gerant@gmail.com', '1', 'Zarrad', 'Youssef', 21, FALSE, TRUE, FALSE, NULL);
-
-CREATE TABLE AssociationTemporaire (
-	idCompte serial,
-	immatriculation varchar(20),
-	FOREIGN KEY (idCompte) REFERENCES Compte (idCompte),
-	FOREIGN KEY (immatriculation) REFERENCES Vehicule (immatriculation),
-	PRIMARY KEY(idCompte, immatriculation)
-);
-
-INSERT INTO AssociationTemporaire VALUES (2, 'BB456BB');
 
 CREATE TABLE Borne (
 	idBorne serial PRIMARY KEY,
