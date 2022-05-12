@@ -10,11 +10,15 @@ CREATE TABLE Vehicule (
 	immatriculation varchar(20) PRIMARY KEY,
 	marque varchar(50) NOT NULL,
 	modele varchar(50) NOT NULL,
-	couleur varchar(50) NOT NULL
+	couleur varchar(50) NOT NULL,
+	idcompte serial,
+	statusAssociation varchar(50),
+	FOREIGN KEY (idCompte) REFERENCES Compte (idCompte),
+	
 );
 
-INSERT INTO Vehicule VALUES ('AA123AA', 'Mercedes Benz', 'CLA', 'Noir');
-INSERT INTO Vehicule VALUES ('BB456BB', 'Nissan', 'Micra', 'Vert');
+INSERT INTO Vehicule VALUES ('AA123AA', 'Mercedes Benz', 'CLA', 'Noir', 1,'Permanent');
+INSERT INTO Vehicule VALUES ('BB456BB', 'Nissan', 'Micra', 'Vert' NULL, NULL);
 
 CREATE TABLE Compte (
 	idCompte serial PRIMARY KEY,
@@ -26,8 +30,6 @@ CREATE TABLE Compte (
 	estClient bool NOT NULL,
 	estGerant bool NOT NULL,
 	estAdministrateur bool NOT NULL,
-	immatriculation varchar(20),
-	FOREIGN KEY (immatriculation) REFERENCES Vehicule (immatriculation)
 );
 
 INSERT INTO Compte (email, mdp, nom, prenom, age, estClient, estGerant, estAdministrateur, immatriculation) VALUES ('alexandre@gmail.com', '123', 'Sousa', 'Alexandre', 21, TRUE, FALSE, FALSE, 'AA123AA');
