@@ -3,12 +3,12 @@ package fr.ul.miage.Genie_Logiciel_Projet_2022.service;
 import java.sql.SQLException;
 
 import fr.ul.miage.Genie_Logiciel_Projet_2022.model.Compte;
-import org.springframework.security.core.session.SessionRegistry;
+//import org.springframework.security.core.session.SessionRegistry;
 
 
 public class ServiceCompte {
 
-	SessionRegistry sessionRegistry;
+	//SessionRegistry sessionRegistry;
 
 	Compte compte = new Compte();
 	
@@ -37,7 +37,6 @@ public class ServiceCompte {
 		compte.setEstClient(cpt.isEstClient());
 		compte.setEstGerant(cpt.isEstGerant());
 		compte.setEstAdministrateur(cpt.isEstAdministrateur());
-		compte.setImmatriculation(cpt.getImmatriculation());
 		
 	}
 	
@@ -48,7 +47,7 @@ public class ServiceCompte {
 		// requete sql à mettre pour récupérer idCompte where email = email connecté
 		// String sql = "SELECT idCompte from compte c where c.email = compte.getEmail()";
 		// PreparedStatement prep = conn.prepareStatement(sql);
-		sessionRegistry.getSessionInformation(idCompte).expireNow();
+		//sessionRegistry.getSessionInformation(idCompte).expireNow();
 
 		
 	}

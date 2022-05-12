@@ -2,7 +2,7 @@ package fr.ul.miage.Genie_Logiciel_Projet_2022.model;
 
 public class Compte {
     private int idCompte;
-    private String Email;
+    private String email;
     private String mdp;
     private String nom;
     private String prenom;
@@ -10,15 +10,13 @@ public class Compte {
     private boolean estClient = false;
     private boolean estGerant = false;
     private boolean estAdministrateur = false;
-    private String immatriculation = null;
 
-    public Compte() {
-        super();
-    }
+    public Compte() {}
 
-    public Compte(int idCompte, String email, String mdp, String nom, String prenom, int age, boolean estClient, boolean estGerant, boolean estAdministrateur, String immatriculation) {
+    public Compte(int idCompte, String email, String mdp, String nom, String prenom, int age,
+                  boolean estClient, boolean estGerant, boolean estAdministrateur) {
         this.idCompte = idCompte;
-        Email = email;
+        this.email = email;
         this.mdp = mdp;
         this.nom = nom;
         this.prenom = prenom;
@@ -26,7 +24,6 @@ public class Compte {
         this.estClient = estClient;
         this.estGerant = estGerant;
         this.estAdministrateur = estAdministrateur;
-        this.immatriculation = immatriculation;
     }
 
     public int getIdCompte() {
@@ -38,11 +35,11 @@ public class Compte {
     }
 
     public String getEmail() {
-        return Email;
+        return email;
     }
 
     public void setEmail(String email) {
-        Email = email;
+        this.email = email;
     }
 
     public String getMdp() {
@@ -101,19 +98,11 @@ public class Compte {
         this.estAdministrateur = estAdministrateur;
     }
 
-    public String getImmatriculation() {
-        return immatriculation;
-    }
-
-    public void setImmatriculation(String immatriculation) {
-        this.immatriculation = immatriculation;
-    }
-
     @Override
     public String toString() {
         return "Compte{" +
                 "idCompte=" + idCompte +
-                ", Email='" + Email + '\'' +
+                ", email='" + email + '\'' +
                 ", mdp='" + mdp + '\'' +
                 ", nom='" + nom + '\'' +
                 ", prenom='" + prenom + '\'' +
@@ -121,7 +110,6 @@ public class Compte {
                 ", estClient=" + estClient +
                 ", estGerant=" + estGerant +
                 ", estAdministrateur=" + estAdministrateur +
-                ", immatriculation='" + immatriculation + '\'' +
                 '}';
     }
 }
