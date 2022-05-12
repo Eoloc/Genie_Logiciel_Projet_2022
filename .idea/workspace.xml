@@ -6,7 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="07f31be9-6a08-4d9f-a7f4-c7dbaec0f9d0" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Conception/bdd.drawio" beforeDir="false" afterPath="$PROJECT_DIR$/Conception/bdd.drawio" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SQL/bdd.sql" beforeDir="false" afterPath="$PROJECT_DIR$/SQL/bdd.sql" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/fr/ul/miage/Genie_Logiciel_Projet_2022/model/Compte.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/ul/miage/Genie_Logiciel_Projet_2022/model/Compte.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/fr/ul/miage/Genie_Logiciel_Projet_2022/service/ServiceCompte.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/ul/miage/Genie_Logiciel_Projet_2022/service/ServiceCompte.java" afterDir="false" />
     </list>
