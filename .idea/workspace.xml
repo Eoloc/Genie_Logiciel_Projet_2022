@@ -5,44 +5,22 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="07f31be9-6a08-4d9f-a7f4-c7dbaec0f9d0" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Bornes_project/.classpath" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Bornes_project/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Bornes_project/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Bornes_project/.idea/compiler.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Bornes_project/.idea/encodings.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Bornes_project/.idea/jarRepositories.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Bornes_project/.idea/libraries/Maven__commons_cli_commons_cli_1_5_0.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Bornes_project/.idea/libraries/Maven__junit_junit_4_13_2.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Bornes_project/.idea/libraries/Maven__org_apache_commons_commons_csv_1_9_0.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Bornes_project/.idea/libraries/Maven__org_openjfx_javafx_base_18_0_1.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Bornes_project/.idea/libraries/Maven__org_openjfx_javafx_base_win_18_0_1.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Bornes_project/.idea/libraries/Maven__org_openjfx_javafx_controls_18_0_1.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Bornes_project/.idea/libraries/Maven__org_openjfx_javafx_controls_win_18_0_1.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Bornes_project/.idea/libraries/Maven__org_openjfx_javafx_fxml_18_0_1.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Bornes_project/.idea/libraries/Maven__org_openjfx_javafx_fxml_win_18_0_1.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Bornes_project/.idea/libraries/Maven__org_openjfx_javafx_graphics_18_0_1.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Bornes_project/.idea/libraries/Maven__org_openjfx_javafx_graphics_win_18_0_1.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Bornes_project/.idea/misc.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Bornes_project/.idea/modules.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Bornes_project/.idea/vcs.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Bornes_project/.idea/workspace.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Bornes_project/.project" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Bornes_project/.settings/org.eclipse.core.resources.prefs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Bornes_project/.settings/org.eclipse.jdt.core.prefs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Bornes_project/.settings/org.eclipse.m2e.core.prefs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Bornes_project/Bornes_project.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Bornes_project/pom.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Bornes_project/src/main/java/controller/CompteController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/ul/miage/Genie_Logiciel_Projet_2022/controller/CompteController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Bornes_project/src/main/java/model/Compte.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/ul/miage/Genie_Logiciel_Projet_2022/model/Compte.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Bornes_project/src/main/java/service/ServiceCompte.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/ul/miage/Genie_Logiciel_Projet_2022/service/ServiceCompte.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fr/ul/miage/Genie_Logiciel_Projet_2022/model/Compte.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/ul/miage/Genie_Logiciel_Projet_2022/model/Compte.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fr/ul/miage/Genie_Logiciel_Projet_2022/service/ServiceCompte.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/ul/miage/Genie_Logiciel_Projet_2022/service/ServiceCompte.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -70,6 +48,15 @@
       <recent name="C:\Users\eoloc\Documents\Developpement\cours\miage\M1\S8\Genie Logiciel\Projet\Genie_Logiciel_Projet_2022\src\fr\ul\miage" />
     </key>
   </component>
+  <component name="RunManager">
+    <configuration name="Launcher" type="Application" factoryName="Application">
+      <option name="MAIN_CLASS_NAME" value="Launcher" />
+      <module name="Genie_Logiciel_Projet_2022" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -91,5 +78,6 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
 </project>
