@@ -1,4 +1,4 @@
-package controller;
+package fr.ul.miage.Genie_Logiciel_Projet_2022.controller;
 
 public class CompteController {
 

@@ -1,8 +1,8 @@
-package service;
+package fr.ul.miage.Genie_Logiciel_Projet_2022.service;
 
 import java.sql.SQLException;
 
-import model.Compte;
+import fr.ul.miage.Genie_Logiciel_Projet_2022.model.Compte;
 import org.springframework.security.core.session.SessionRegistry;
 
 

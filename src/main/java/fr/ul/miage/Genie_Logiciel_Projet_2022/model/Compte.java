@@ -1,4 +1,4 @@
-package model;
+package fr.ul.miage.Genie_Logiciel_Projet_2022.model;
 
 public class Compte {
     private int idCompte;
