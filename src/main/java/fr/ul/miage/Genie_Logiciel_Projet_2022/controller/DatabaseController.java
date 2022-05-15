@@ -41,4 +41,8 @@ public class DatabaseController {
         }
         return comptes;
     }
+
+    public Connection getCon() {
+        return con;
+    }
 }

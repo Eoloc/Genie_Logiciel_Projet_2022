@@ -1,3 +1,4 @@
+import fr.ul.miage.Genie_Logiciel_Projet_2022.controller.BorneController;
 import fr.ul.miage.Genie_Logiciel_Projet_2022.controller.DatabaseController;
 import fr.ul.miage.Genie_Logiciel_Projet_2022.model.Compte;
 
@@ -10,11 +11,9 @@ public class Launcher {
         DatabaseController bdd = new DatabaseController("postgres", "alex57");
         bdd.connexionDatabase();
         ArrayList<Compte> comptes = bdd.getAllClient();
+        BorneController borneController = new BorneController(bdd);
         for(Compte compte : comptes){
             System.out.println(compte);
         }
     }
-
-
-
 }
