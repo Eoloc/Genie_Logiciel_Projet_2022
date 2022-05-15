@@ -19,7 +19,7 @@ public class DatabaseController {
     }
 
     public void connexionDatabase() {
-        String url = "jdbc:postgresql://localhost:5432/localhost";
+        String url = "jdbc:postgresql://localhost:5433/localhost";
 
         try {
             con = DriverManager.getConnection(url, user, password);

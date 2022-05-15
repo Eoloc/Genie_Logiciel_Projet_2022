@@ -1,5 +1,10 @@
 package fr.ul.miage.Genie_Logiciel_Projet_2022.model;
 
+import fr.ul.miage.Genie_Logiciel_Projet_2022.controller.DatabaseController;
+
+import java.sql.*;
+import java.util.ArrayList;
+
 public class Compte {
     private int idCompte;
     private String email;
@@ -13,6 +18,10 @@ public class Compte {
 
     public Compte() {}
 
+    public Compte(String email, String mdp){
+        this.email = email;
+        this.mdp = mdp;
+    }
     public Compte(int idCompte, String email, String mdp, String nom, String prenom, int age,
                   boolean estClient, boolean estGerant, boolean estAdministrateur) {
         this.idCompte = idCompte;
@@ -24,6 +33,7 @@ public class Compte {
         this.estClient = estClient;
         this.estGerant = estGerant;
         this.estAdministrateur = estAdministrateur;
+
     }
 
     public int getIdCompte() {
@@ -78,9 +88,6 @@ public class Compte {
         return estClient;
     }
 
-    public void setEstClient(boolean estClient) {
-        this.estClient = estClient;
-    }
 
     public boolean isEstGerant() {
         return estGerant;
@@ -98,6 +105,8 @@ public class Compte {
         this.estAdministrateur = estAdministrateur;
     }
 
+
+
     @Override
     public String toString() {
         return "Compte{" +
@@ -110,6 +119,66 @@ public class Compte {
                 ", estClient=" + estClient +
                 ", estGerant=" + estGerant +
                 ", estAdministrateur=" + estAdministrateur +
+
                 '}';
     }
+
+    Connection con;
+    public ArrayList<Compte> getAllClient(DatabaseController bdd) throws SQLException {
+        ArrayList<Compte> comptes = new ArrayList<>();
+        Statement st = con.createStatement();
+        ResultSet rs = st.executeQuery("SELECT * FROM compte");
+        while (rs.next()) {
+            Compte compte = new Compte(rs.getInt(1), rs.getString(2),
+                    rs.getString(3), rs.getString(4), rs.getString(5),
+                    rs.getInt(6), rs.getBoolean(7), rs.getBoolean(8),
+                    rs.getBoolean(9));
+            comptes.add(compte);
+        }
+        return comptes;
+    }
+
+    public Compte getClientByEmailPassword(DatabaseController bdd,String email, String mdp) throws SQLException {
+
+        Statement st = bdd.getCon().createStatement();
+        ResultSet rs = st.executeQuery("SELECT email, mdp FROM compte c where c.email=email and c.mdp=mdp");
+        Compte compte = new Compte(rs.getString(2),rs.getString(3));
+        return compte;
+    }
+
+    public void setEstClient(boolean estClient) {
+        this.estClient = estClient;
+    }
+
+    public String inscrire(Compte cpt) throws SQLException {
+
+        String sql = "INSERT INTO compte (email, mdp, nom, prenom, age, estClient, estGerant, estAdministrateur)"
+                + "VALUES(?,?,?,?,?,?,?,?)";
+
+        try (
+                PreparedStatement pstmt = con.prepareStatement(sql,
+                        Statement.RETURN_GENERATED_KEYS)) {
+
+            pstmt.setString(2, cpt.getEmail());
+            pstmt.setString(3, cpt.getMdp());
+            pstmt.setString(4, cpt.getNom());
+            pstmt.setString(5, cpt.getPrenom());
+            pstmt.setInt(6, cpt.getAge());
+            pstmt.setBoolean(7, cpt.isEstClient());
+            pstmt.setBoolean(8, cpt.isEstGerant());
+            pstmt.setBoolean(9, cpt.isEstAdministrateur());
+
+
+            int affectedRows = pstmt.executeUpdate();
+
+
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+        return "Compte est bien créé";
+        }
 }
+
+
+
+

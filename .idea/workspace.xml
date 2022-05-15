@@ -6,10 +6,10 @@
   <component name="ChangeListManager">
     <list default="true" id="07f31be9-6a08-4d9f-a7f4-c7dbaec0f9d0" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Conception/bdd.drawio" beforeDir="false" afterPath="$PROJECT_DIR$/Conception/bdd.drawio" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SQL/bdd.sql" beforeDir="false" afterPath="$PROJECT_DIR$/SQL/bdd.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Launcher.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Launcher.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fr/ul/miage/Genie_Logiciel_Projet_2022/controller/CompteController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/ul/miage/Genie_Logiciel_Projet_2022/controller/CompteController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fr/ul/miage/Genie_Logiciel_Projet_2022/controller/DatabaseController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/ul/miage/Genie_Logiciel_Projet_2022/controller/DatabaseController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/fr/ul/miage/Genie_Logiciel_Projet_2022/model/Compte.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/ul/miage/Genie_Logiciel_Projet_2022/model/Compte.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/fr/ul/miage/Genie_Logiciel_Projet_2022/service/ServiceCompte.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/ul/miage/Genie_Logiciel_Projet_2022/service/ServiceCompte.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -26,18 +26,34 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="useMavenConfig" value="true" />
+      </MavenGeneralSettings>
+    </option>
+  </component>
   <component name="ProjectId" id="293Jib5Jw30j3KGyeYWMILtq7Tq" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">
-    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
-    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="exceleditor.install" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/java/controller" />
-    <property name="settings.editor.selected.configurable" value="reference.settings.project.maven.repository.indices" />
-  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/User/Desktop/M1/Génie Logiciel/Genie_Logiciel_Projet_2022&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;spring.configuration.checksum&quot;: &quot;d5e55b64eb65a6ed9ac936f53a7b7dbc&quot;
+  }
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\eoloc\Documents\Developpement\cours\miage\M1\S8\Genie Logiciel\Projet\Genie_Logiciel_Projet_2022\src\main\java\controller" />
@@ -66,8 +82,16 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1652335967452</updated>
+      <workItem from="1652541170032" duration="4435000" />
+      <workItem from="1652546627847" duration="1330000" />
+      <workItem from="1652549947596" duration="2340000" />
+      <workItem from="1652634152051" duration="381000" />
+      <workItem from="1652634830773" duration="1084000" />
     </task>
     <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
@@ -79,6 +103,5 @@
         </entry>
       </map>
     </option>
-    <option name="oldMeFiltersMigrated" value="true" />
   </component>
 </project>

@@ -7,12 +7,14 @@ import java.util.ArrayList;
 
 public class Launcher {
     public static void main(String[] args) throws SQLException {
-        DatabaseController bdd = new DatabaseController("postgres", "alex57");
-        bdd.connexionDatabase();
+        DatabaseController bdd = new DatabaseController("postgres", "123456789");
+        Compte cpt = new Compte();
+                bdd.connexionDatabase();
         ArrayList<Compte> comptes = bdd.getAllClient();
         for(Compte compte : comptes){
             System.out.println(compte);
         }
+        cpt.getClientByEmailPassword("gerant@gmail.com", "1");
     }
 
 
