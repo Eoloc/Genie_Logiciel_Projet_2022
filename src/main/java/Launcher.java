@@ -2,7 +2,10 @@ import fr.ul.miage.Genie_Logiciel_Projet_2022.controller.BorneController;
 import fr.ul.miage.Genie_Logiciel_Projet_2022.controller.DatabaseController;
 import fr.ul.miage.Genie_Logiciel_Projet_2022.model.Compte;
 import fr.ul.miage.Genie_Logiciel_Projet_2022.view.MenuPrincipal;
+import org.ini4j.Ini;
 
+import java.io.File;
+import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -10,10 +13,17 @@ import java.util.Scanner;
 
 public class Launcher {
     public static void main(String[] args) throws SQLException {
-
-        DatabaseController bdd = new DatabaseController("postgres", "123456789");
+		Ini ini = null;
+		try {
+			ini = new Ini(new File("src/main/java/bdd.ini"));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		System.out.println();
+		assert ini != null;
+		DatabaseController bdd = new DatabaseController(ini.get("database", "user"), ini.get("database", "password"), ini.get("database", "port"));
         Compte cpt = new Compte();
-                bdd.connexionDatabase();
+		bdd.connexionDatabase();
 
         ArrayList<Compte> comptes = bdd.getAllClient();
         BorneController borneController = new BorneController(bdd);

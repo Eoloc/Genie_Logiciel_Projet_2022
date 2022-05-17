@@ -11,16 +11,17 @@ public class DatabaseController {
     private Connection con;
     private String user;
     private String password;
+    private String port;
 
-    public DatabaseController(String u, String pw) {
+    public DatabaseController(String u, String pw, String pt) {
         user = u;
         password = pw;
+        port = pt;
         con = null;
     }
 
     public void connexionDatabase() {
-        String url = "jdbc:postgresql://localhost:5433/localhost";
-
+        String url = "jdbc:postgresql://localhost:"+ port +"/localhost";
         try {
             con = DriverManager.getConnection(url, user, password);
         } catch (SQLException ex) {
