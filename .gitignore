@@ -3,3 +3,7 @@
 target
 Genie_Logiciel_Projet_2022.iml
 .idea/workspace.xml
+src/.classpath
+src/.project
+src/main/java/bdd.ini
+
