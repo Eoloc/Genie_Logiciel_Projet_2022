@@ -31,7 +31,8 @@ public class Launcher {
             System.out.println(compte);
         }
 
-        cpt.getClientByEmailPassword(bdd,"gerant@gmail.com", "1");
+        //cpt.getClientByEmailPassword(bdd,"gerant@gmail.com", "1");
+		//cpt.inscrire(bdd, "tt@h.fr","1254","tt","op",20);
 
         ArrayList<ArrayList<String>> listeMenus = new ArrayList<ArrayList<String>>();
         
@@ -88,6 +89,7 @@ public class Launcher {
     	        	break;
     	        	case 1:
     	        		m.afficherMenuConnexion();
+						//cpt.getClientByEmailPassword(bdd,m.afficherMenuConnexion()., "1");
     	        		//appel méthode connexion (voir retour menuConnexion)
     	        	break;
     	        	case 2:
