@@ -141,14 +141,8 @@ public class Compte {
     }
 
     public Compte getClientByEmailPassword(DatabaseController bdd, String email, String mdp) throws SQLException {
-
-        //new ArrayList<>();
-        //Statement st = bdd.getCon().createStatement();
-
-       // ArrayList<Compte> comptes = new ArrayList<>();
-       // String sql = "SELECT email, mdp FROM compte c where c.email=email and c.mdp=mdp";
         Compte compte = null;
-        try (PreparedStatement st = bdd.getCon().prepareStatement("SELECT * FROM compte c where c.email=email and c.mdp=mdp");
+        try (PreparedStatement st = bdd.getCon().prepareStatement("SELECT * FROM compte c where c.email=" + email + " and c.mdp=" + mdp);
         ResultSet rs = st.executeQuery()){
             while (rs.next()){
                 compte = new Compte(rs.getInt(1), rs.getString(2),
@@ -157,24 +151,10 @@ public class Compte {
                         rs.getBoolean(9));
 
             }
-
-
         } catch (SQLException ex) {
             System.out.println(ex);
-
-
-    }
-        return compte;
-        //ResultSet rs = st.executeQuery("SELECT email, mdp FROM compte c where c.email=email and c.mdp=mdp");
-        /*
-        while (rs.next()) {
-            Compte compte = new Compte(rs.getString(2),rs.getString(3));
-            comptes.add(compte);
         }
-        */
-
-        //return compte;
-        //1return comptes.get(0);
+        return compte;
     }
 
     public void setEstClient(boolean estClient) {
