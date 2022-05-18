@@ -140,20 +140,22 @@ public class Compte {
         return comptes;
     }
 
-    public String getClientByEmailPassword(DatabaseController bdd, String email, String mdp) throws SQLException {
+    public Compte getClientByEmailPassword(DatabaseController bdd, String email, String mdp) throws SQLException {
 
         //new ArrayList<>();
         //Statement st = bdd.getCon().createStatement();
 
        // ArrayList<Compte> comptes = new ArrayList<>();
        // String sql = "SELECT email, mdp FROM compte c where c.email=email and c.mdp=mdp";
-        Compte compte = new Compte();
-        try (PreparedStatement st = bdd.getCon().prepareStatement("SELECT email, mdp FROM compte c where c.email=email and c.mdp=mdp");
+        Compte compte = null;
+        try (PreparedStatement st = bdd.getCon().prepareStatement("SELECT * FROM compte c where c.email=email and c.mdp=mdp");
         ResultSet rs = st.executeQuery()){
             while (rs.next()){
-                //Compte compte = new Compte(rs.getString(2),rs.getString(3));
-                compte.setEmail(rs.getString(2));
-                compte.setMdp(rs.getString(3));
+                compte = new Compte(rs.getInt(1), rs.getString(2),
+                        rs.getString(3), rs.getString(4), rs.getString(5),
+                        rs.getInt(6), rs.getBoolean(7), rs.getBoolean(8),
+                        rs.getBoolean(9));
+
             }
 
 
@@ -162,7 +164,7 @@ public class Compte {
 
 
     }
-        return compte.getEmail()+ " "+ compte.getMdp();
+        return compte;
         //ResultSet rs = st.executeQuery("SELECT email, mdp FROM compte c where c.email=email and c.mdp=mdp");
         /*
         while (rs.next()) {

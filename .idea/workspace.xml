@@ -7,7 +7,6 @@
     <list default="true" id="07f31be9-6a08-4d9f-a7f4-c7dbaec0f9d0" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Launcher.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Launcher.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/fr/ul/miage/Genie_Logiciel_Projet_2022/controller/CompteController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/ul/miage/Genie_Logiciel_Projet_2022/controller/CompteController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/fr/ul/miage/Genie_Logiciel_Projet_2022/model/Compte.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/ul/miage/Genie_Logiciel_Projet_2022/model/Compte.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -94,7 +93,7 @@
       <workItem from="1652634830773" duration="1084000" />
       <workItem from="1652701240101" duration="687000" />
       <workItem from="1652795747045" duration="4560000" />
-      <workItem from="1652873959963" duration="489000" />
+      <workItem from="1652873959963" duration="2095000" />
     </task>
     <servers />
   </component>
@@ -126,7 +125,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/src/main/java/fr/ul/miage/Genie_Logiciel_Projet_2022/model/Compte.java</url>
-          <line>181</line>
+          <line>183</line>
           <properties class="fr.ul.miage.Genie_Logiciel_Projet_2022.model.Compte" method="inscrire">
             <option name="EMULATED" value="true" />
             <option name="WATCH_EXIT" value="false" />
