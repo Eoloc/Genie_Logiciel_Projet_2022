@@ -31,9 +31,6 @@ public class Launcher {
             System.out.println(compte);
         }
 
-        //cpt.getClientByEmailPassword(bdd,"gerant@gmail.com", "1");
-		//cpt.inscrire(bdd, "tt@h.fr","1254","tt","op",20);
-
         ArrayList<ArrayList<String>> listeMenus = new ArrayList<ArrayList<String>>();
         
         ArrayList<String> listeMenusAccueil = new ArrayList<String>();
@@ -57,112 +54,118 @@ public class Launcher {
         listeSousMenus1.add("Visualiser réservations");
         listeSousMenus1.add("Modifier réservations");
         listeSousMenus1.add("Voir disponibilités bornes");
+		listeSousMenus1.add("Quitter");
         
         ArrayList<String> listeSousMenus2 = new ArrayList<String>();
         listeSousMenus2.add("Modifier informations");
         listeSousMenus2.add("Visualiser informations");
         listeSousMenus2.add("Visualiser dépenses");
+		listeSousMenus2.add("Quitter");
        
         ArrayList<String> listeSousMenus3 = new ArrayList<String>();
         listeSousMenus3.add("Visualiser immatriculations");
         listeSousMenus3.add("Ajouter immatriculation");
         listeSousMenus3.add("Supprimer immatriculation");
+		listeSousMenus3.add("Quitter");
         
         listeSousMenus.add(listeSousMenus1);
         listeSousMenus.add(listeSousMenus2);
         listeSousMenus.add(listeSousMenus3);
         
-        
-        
-        
         Compte c = null;
         MenuPrincipal m = new MenuPrincipal(c,listeMenus,listeSousMenus);
-        int choixUserMenuPrincipal = m.afficherMenu();
+        int choixUserMenuPrincipal = -1;
         int choixUserMenuSecondaire;
         boolean finProgramme = false;    
-        while(finProgramme == false) {
+        while(!finProgramme) {
         	if(c == null) {
+				choixUserMenuPrincipal = m.afficherMenu();
             	switch(choixUserMenuPrincipal) {
     	        	case 0:
-						String [] informationInscription = m.afficherMenuConnexion();
+						String [] informationInscription = m.afficherMenuInscription();
 						//c=cpt.inscrire(bdd,c);
     	        		//appel méthode inscription (voir retour menuInscription)
-    	        	break;
+    	        		break;
     	        	case 1:
-    	        		//m.afficherMenuConnexion();
 						String [] information = m.afficherMenuConnexion();
-						c=cpt.getClientByEmailPassword(bdd,information[0], information[1]);
-
-    	        	break;
+						c = cpt.getClientByEmailPassword(bdd,information[0], information[1]);
+						System.out.println(c);
+						if(c != null){
+							m.setUser(c);
+						}
+    	        		break;
     	        	case 2:
     	        		finProgramme = true;
-    	        	break;
+    	        		break;
             	}
-            	if(finProgramme == false) {
-            		choixUserMenuPrincipal = m.afficherMenu();
-            	}
+
             }else {
-				
+				choixUserMenuPrincipal = m.afficherMenu();
+				choixUserMenuSecondaire = -1;
             	choixUserMenuSecondaire = m.afficherSousMenu(choixUserMenuPrincipal);
             	switch(choixUserMenuPrincipal) {
     	        	case 0:
-    	        		switch(choixUserMenuPrincipal) {
+    	        		switch(choixUserMenuSecondaire) {
     			        	case 0:
     			        		System.out.println("Menu réservation");
     			        		//TODO
-    			        	break;
+    			        		break;
     			        	case 1:
     			        		System.out.println("Vue réservations");
     			        		//TODO
-    			        	break;
+    			        		break;
     			        	case 2:
     			        		System.out.println("Modification réservation");
     			        		//TODO
-    			        	break;
+    			        		break;
     			        	case 3:
     			        		System.out.println("Disponibilité bornes");
     			        		//TODO
-    			        	break;
+    			        		break;
+							case 4:
+								break;
     	        		}
-    	        	break;
+    	        		break;
     	        	case 1:
-    	        		switch(choixUserMenuPrincipal) {
+    	        		switch(choixUserMenuSecondaire) {
     			        	case 0:
     			        		System.out.println("Modification informations personnelles");
     			        		//TODO
-    			        	break;
+    			        		break;
     			        	case 1:
     			        		System.out.println("Visualisation informations personnelles");
     			        		//TODO
-    			        	break;
+    			        		break;
     			        	case 2:
     			        		System.out.println("Visualisation dépenses");
     			        		//TODO
-    			        	break;
+    			        		break;
+							case 3:
+								break;
     	        		}
-    	        	break;
+    	        		break;
     	        	case 2:
-    	        		switch(choixUserMenuPrincipal) {
+    	        		switch(choixUserMenuSecondaire) {
     			        	case 0:
     			        		System.out.println("Visualiser immatriculations");
     			        		//TODO
-    			        	break;
+    			        		break;
     			        	case 1:
     			        		System.out.println("Ajouter immatriculation");
     			        		//TODO
-    			        	break;
+    			        		break;
     			        	case 2:
     			        		System.out.println("Supprimer immatriculation");
     			        		//TODO
-    			        	break;
+    			        		break;
+							case 3:
+								break;
     		        	}
-    	        	break;
+    	        		break;
     	        	case 3:
-    	        		finProgramme = true;
-    	        	break;
-            	}
-            	if(finProgramme == false) {
-            		choixUserMenuPrincipal = m.afficherMenu();
+    	        		c = null;
+						m.setUser(c);
+    	        		break;
             	}
             }
         }

@@ -81,21 +81,23 @@ public class MenuPrincipal implements Menu {
 		int choix = -1 ;
 		boolean erreur;
 		System.out.println(this.listeMenus.get(1).get(menuChoisi)+" :\n");
-		for(int i = 0; i<this.listeSousMenus.get(menuChoisi).size();i++){
-			System.out.println(" - "+i+" - "+this.listeSousMenus.get(menuChoisi).get(i)+"\n");
-		}
-		erreur = true;
-		while(erreur) {
-			try {
-				choix = sc.nextInt();
-				erreur = false;
-				while(choix > this.listeSousMenus.get(menuChoisi).size()-1 || choix < 0) {
-					System.out.println("Choix invalide, merci de recommencer.\n");
+		if(this.listeSousMenus.size() != menuChoisi){
+			for(int i = 0; i<this.listeSousMenus.get(menuChoisi).size();i++){
+				System.out.println(" - "+i+" - "+this.listeSousMenus.get(menuChoisi).get(i)+"\n");
+			}
+			erreur = true;
+			while(erreur) {
+				try {
 					choix = sc.nextInt();
+					erreur = false;
+					while(choix > this.listeSousMenus.get(menuChoisi).size()-1 || choix < 0) {
+						System.out.println("Choix invalide, merci de recommencer.\n");
+						choix = sc.nextInt();
+					}
+				}catch(Exception e) {
+					System.out.println("Valeur incorrecte. Veuillez réeffectuer la saisie.");
+					sc = new Scanner(System.in);
 				}
-			}catch(Exception e) {
-				System.out.println("Valeur incorrecte. Veuillez réeffectuer la saisie.");
-				sc = new Scanner(System.in); 
 			}
 		}
 		return choix;
@@ -152,5 +154,12 @@ public class MenuPrincipal implements Menu {
 	public ArrayList<ArrayList<String>> getListeSousMenus() {
 		return listeSousMenus;
 	}
-	
+
+	public Compte getUser() {
+		return user;
+	}
+
+	public void setUser(Compte user) {
+		this.user = user;
+	}
 }
