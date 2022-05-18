@@ -30,8 +30,8 @@ public class Launcher {
         for(Compte compte : comptes){
             System.out.println(compte);
         }
-
-        cpt.getClientByEmailPassword(bdd,"gerant@gmail.com", "1");
+        
+        //cpt.getClientByEmailPassword(bdd,"gerant@gmail.com", "1");
 
         ArrayList<ArrayList<String>> listeMenus = new ArrayList<ArrayList<String>>();
         
