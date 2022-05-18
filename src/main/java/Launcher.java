@@ -31,8 +31,6 @@ public class Launcher {
             System.out.println(compte);
         }
         
-        //cpt.getClientByEmailPassword(bdd,"gerant@gmail.com", "1");
-
         ArrayList<ArrayList<String>> listeMenus = new ArrayList<ArrayList<String>>();
         
         ArrayList<String> listeMenusAccueil = new ArrayList<String>();
@@ -83,12 +81,15 @@ public class Launcher {
         	if(c == null) {
             	switch(choixUserMenuPrincipal) {
     	        	case 0:
-    	        		m.afficherMenuInscription();
+						String [] informationInscription = m.afficherMenuConnexion();
+						//c=cpt.inscrire(bdd,c);
     	        		//appel méthode inscription (voir retour menuInscription)
     	        	break;
     	        	case 1:
-    	        		m.afficherMenuConnexion();
-    	        		//appel méthode connexion (voir retour menuConnexion)
+    	        		//m.afficherMenuConnexion();
+						String [] information = m.afficherMenuConnexion();
+						c=cpt.getClientByEmailPassword(bdd,information[0], information[1]);
+
     	        	break;
     	        	case 2:
     	        		finProgramme = true;
@@ -98,6 +99,7 @@ public class Launcher {
             		choixUserMenuPrincipal = m.afficherMenu();
             	}
             }else {
+				
             	choixUserMenuSecondaire = m.afficherSousMenu(choixUserMenuPrincipal);
             	switch(choixUserMenuPrincipal) {
     	        	case 0:

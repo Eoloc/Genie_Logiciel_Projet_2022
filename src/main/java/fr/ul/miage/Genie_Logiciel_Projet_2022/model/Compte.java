@@ -4,6 +4,8 @@ import fr.ul.miage.Genie_Logiciel_Projet_2022.controller.DatabaseController;
 
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.List;
+import java.util.logging.Logger;
 
 public class Compte {
     private int idCompte;
@@ -12,7 +14,7 @@ public class Compte {
     private String nom;
     private String prenom;
     private int age;
-    private boolean estClient = false;
+    private boolean estClient = true;
     private boolean estGerant = false;
     private boolean estAdministrateur = false;
 
@@ -138,11 +140,21 @@ public class Compte {
         return comptes;
     }
 
-    public Compte getClientByEmailPassword(DatabaseController bdd,String email, String mdp) throws SQLException {
+    public Compte getClientByEmailPassword(DatabaseController bdd, String email, String mdp) throws SQLException {
+        Compte compte = null;
+        try (PreparedStatement st = bdd.getCon().prepareStatement("SELECT * FROM compte c where c.email='" + email + "' and c.mdp='" + mdp+"'");
+        ResultSet rs = st.executeQuery()){
+            while (rs.next()){
+                compte = new Compte(rs.getInt(1), rs.getString(2),
+                        rs.getString(3), rs.getString(4), rs.getString(5),
+                        rs.getInt(6), rs.getBoolean(7), rs.getBoolean(8),
+                        rs.getBoolean(9));
 
-        Statement st = bdd.getCon().createStatement();
-        ResultSet rs = st.executeQuery("SELECT email, mdp FROM compte c where c.email=email and c.mdp=mdp");
-        Compte compte = new Compte(rs.getString(2),rs.getString(3));
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            compte = null;
+        }
         return compte;
     }
 
@@ -150,13 +162,13 @@ public class Compte {
         this.estClient = estClient;
     }
 
-    public String inscrire(Compte cpt) throws SQLException {
+    public String inscrire(DatabaseController bdd,Compte cpt) throws SQLException {
 
         String sql = "INSERT INTO compte (email, mdp, nom, prenom, age, estClient, estGerant, estAdministrateur)"
-                + "VALUES(?,?,?,?,?,?,?,?)";
+                + "VALUES(?,?,?,?,?,TRUE,FALSE,FALSE)";
 
         try (
-                PreparedStatement pstmt = con.prepareStatement(sql,
+                PreparedStatement pstmt = bdd.getCon().prepareStatement(sql,
                         Statement.RETURN_GENERATED_KEYS)) {
 
             pstmt.setString(2, cpt.getEmail());
@@ -168,9 +180,7 @@ public class Compte {
             pstmt.setBoolean(8, cpt.isEstGerant());
             pstmt.setBoolean(9, cpt.isEstAdministrateur());
 
-
-            int affectedRows = pstmt.executeUpdate();
-
+            pstmt.executeUpdate();
 
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
