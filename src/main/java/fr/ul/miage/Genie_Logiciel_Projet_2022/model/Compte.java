@@ -142,7 +142,7 @@ public class Compte {
 
     public Compte getClientByEmailPassword(DatabaseController bdd, String email, String mdp) throws SQLException {
         Compte compte = null;
-        try (PreparedStatement st = bdd.getCon().prepareStatement("SELECT * FROM compte c where c.email=" + email + " and c.mdp=" + mdp);
+        try (PreparedStatement st = bdd.getCon().prepareStatement("SELECT * FROM compte c where c.email='" + email + "' and c.mdp='" + mdp+"'");
         ResultSet rs = st.executeQuery()){
             while (rs.next()){
                 compte = new Compte(rs.getInt(1), rs.getString(2),
@@ -152,7 +152,8 @@ public class Compte {
 
             }
         } catch (SQLException ex) {
-            System.out.println(ex);
+            ex.printStackTrace();
+            compte = null;
         }
         return compte;
     }
