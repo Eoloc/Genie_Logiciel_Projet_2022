@@ -15,6 +15,10 @@
         <project.main.classname>${project.groupId}.${project.artifactId}.Launcher</project.main.classname>
         <!-- Nom de la classe principale -->
         <project.bin.appname>Genie_Logiciel_Projet_2022</project.bin.appname>
+		<assertj.version>3.22.0</assertj.version>
+        <junit.version>5.8.2</junit.version>
+        <mockito.version>4.4.0</mockito.version>
+        <jacoco.version>0.8.7</jacoco.version>
     </properties>
     <build>
         <plugins>
@@ -46,11 +50,31 @@
         </plugins>
     </build>
     <dependencies>
-        <!-- https://mvnrepository.com/artifact/junit/junit -->
+        <!-- Langage DSL pour les tests -->
         <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>4.13.1</version>
+            <groupId>org.assertj</groupId>
+            <artifactId>assertj-core</artifactId>
+            <version>${assertj.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <!-- Tests unitaires en Java -->
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter</artifactId>
+            <version>${junit.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <!-- Mocking en Java -->
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-junit-jupiter</artifactId>
+            <version>${mockito.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-core</artifactId>
+            <version>${mockito.version}</version>
             <scope>test</scope>
         </dependency>
         <!-- https://mvnrepository.com/artifact/org.postgresql/postgresql -->
