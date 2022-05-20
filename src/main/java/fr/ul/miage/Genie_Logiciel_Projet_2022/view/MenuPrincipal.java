@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 import fr.ul.miage.Genie_Logiciel_Projet_2022.model.Compte;
+import fr.ul.miage.Genie_Logiciel_Projet_2022.model.Reservation;
 
 public class MenuPrincipal implements Menu {
 
@@ -146,6 +147,153 @@ public class MenuPrincipal implements Menu {
 	}
 	
 	
+	public void afficherInformationsPersonnelles() {
+		String affichage = "===============================\n";
+		affichage += "Mes informations personnelles: \n";
+		affichage += "Prénom: " + this.user.getPrenom()+"\n";
+		affichage += "Nom: " + this.user.getNom()+"\n";
+		affichage += "Âge: " + this.user.getAge()+"\n";
+		affichage += "Email: " + this.user.getEmail()+"\n";
+		affichage += "===============================\n";
+		System.out.println(affichage);
+	}
+	
+	
+	public Compte afficherModificationInformationsPersonnelles() {
+		Scanner sc = new Scanner(System.in);
+		int choix = -1;
+		String nouvelleValeur;
+		int nouvelleValeurAge = this.user.getAge();
+		boolean erreur = false;
+		
+		String affichage = "===============================\n";
+		affichage += "Modification informations personnelles: \n";
+		affichage += " - 0 - Prénom: " + this.user.getPrenom()+"\n";
+		affichage += " - 1 - Nom: " + this.user.getNom()+"\n";
+		affichage += " - 2 - Âge: " + this.user.getAge()+"\n";
+		affichage += " - 3 - Email: " + this.user.getEmail()+"\n";
+		affichage += " - 4 - Mot de passe\n";
+		affichage += " - 5 - Quitter\n";
+		affichage += "===============================\n";
+		affichage += "Indiquer quelle information vous souhaitez modifier\n";
+		System.out.println(affichage);
+		erreur = true;
+		while(erreur) {
+			try {
+				choix = sc.nextInt();
+				while(choix < 0 || choix > 5) {
+					System.out.println("Choix invalide\n");
+					choix = sc.nextInt();
+				}
+				erreur = false;
+			}catch(Exception e) {
+				System.out.println("Valeur incorrecte. Veuillez réeffectuer la saisie.");
+				sc = new Scanner(System.in);
+			}
+		}
+		sc = new Scanner(System.in);
+		switch(choix) {
+			case 0:
+				System.out.println("Modification du prénom, renseignez la nouvelle valeur\n");
+				erreur = true;
+				while(erreur) {
+					try {
+						nouvelleValeur = sc.nextLine();
+						if(nouvelleValeur != "") {
+							this.user.setPrenom(nouvelleValeur);
+						}
+						erreur = false;
+					}catch(Exception e) {
+						System.out.println("Valeur incorrecte. Veuillez réeffectuer la saisie.");
+						sc = new Scanner(System.in);
+					}
+				}
+				break;
+			case 1:
+				System.out.println("Modification du nom, renseignez la nouvelle valeur\n");
+				erreur = true;
+				while(erreur) {
+					try {
+						nouvelleValeur = sc.nextLine();
+						if(nouvelleValeur != "") {
+							this.user.setNom(nouvelleValeur);
+						}
+						erreur = false;
+					}catch(Exception e) {
+						System.out.println("Valeur incorrecte. Veuillez réeffectuer la saisie.");
+						sc = new Scanner(System.in);
+					}
+				}
+				
+				break;
+			case 2:
+				System.out.println("Modification de l'âge, renseignez la nouvelle valeur\n");
+				erreur = true;
+				while(erreur) {
+					try {
+						nouvelleValeurAge = sc.nextInt();
+						this.user.setAge(nouvelleValeurAge);
+						erreur = false;
+					}catch(Exception e) {
+						System.out.println("Valeur incorrecte. Veuillez réeffectuer la saisie.");
+						sc = new Scanner(System.in);
+					}
+				}
+				break;
+			case 3:
+				System.out.println("Modification de l'email, renseignez la nouvelle valeur\n");
+				erreur = true;
+				while(erreur) {
+					try {
+						nouvelleValeur = sc.nextLine();
+						if(nouvelleValeur != "") {
+							this.user.setEmail(nouvelleValeur);
+						}
+						erreur = false;
+					}catch(Exception e) {
+						System.out.println("Valeur incorrecte. Veuillez réeffectuer la saisie.");
+						sc = new Scanner(System.in);
+					}
+				}
+				break;
+			case 4:
+				System.out.println("Modification du mot de passe, renseignez votre mot de passe actuel avant d'indiquer la nouvelle valeur\n");
+				erreur = true;
+				while(erreur) {
+					try {
+						nouvelleValeur = sc.nextLine();
+						if(nouvelleValeur.equals(this.user.getMdp())) {
+							System.out.println("Renseinger le nouveau mot de passe\n");
+							nouvelleValeur = sc.nextLine();
+							if(nouvelleValeur != "") {
+								this.user.setMdp(nouvelleValeur);
+							}
+						}else {
+							System.out.println("Mot de passe incorrect\n");
+						}
+						erreur = false;
+					}catch(Exception e) {
+						System.out.println("Valeur incorrecte. Veuillez réeffectuer la saisie.");
+						sc = new Scanner(System.in);
+					}
+				}
+				
+				break;
+			case 5:
+				break;
+		}
+		return this.user;
+	}
+	
+	public void afficherListeReservations(ArrayList<Reservation> liste) {
+		String affichage = "===============================\n";
+		affichage += "Mes réservations: \n";
+		for(Reservation r : liste) {
+			affichage += r.toString()+"\n";
+		}
+		affichage += "===============================\n";
+		System.out.println(affichage);
+	}
 
 	public ArrayList<ArrayList<String>> getListeMenus() {
 		return listeMenus;

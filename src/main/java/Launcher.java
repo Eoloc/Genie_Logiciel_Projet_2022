@@ -1,6 +1,7 @@
 import fr.ul.miage.Genie_Logiciel_Projet_2022.controller.BorneController;
 import fr.ul.miage.Genie_Logiciel_Projet_2022.controller.DatabaseController;
 import fr.ul.miage.Genie_Logiciel_Projet_2022.model.Compte;
+import fr.ul.miage.Genie_Logiciel_Projet_2022.model.Reservation;
 import fr.ul.miage.Genie_Logiciel_Projet_2022.view.MenuPrincipal;
 import org.ini4j.Ini;
 
@@ -55,18 +56,18 @@ public class Launcher {
         listeSousMenus1.add("Modifier réservations");
         listeSousMenus1.add("Voir disponibilités bornes");
 		listeSousMenus1.add("Quitter");
-        
+               
         ArrayList<String> listeSousMenus2 = new ArrayList<String>();
-        listeSousMenus2.add("Modifier informations");
-        listeSousMenus2.add("Visualiser informations");
-        listeSousMenus2.add("Visualiser dépenses");
-		listeSousMenus2.add("Quitter");
-       
+        listeSousMenus2.add("Visualiser immatriculations");
+        listeSousMenus2.add("Ajouter immatriculation");
+        listeSousMenus2.add("Supprimer immatriculation");
+        listeSousMenus2.add("Quitter");
+
         ArrayList<String> listeSousMenus3 = new ArrayList<String>();
-        listeSousMenus3.add("Visualiser immatriculations");
-        listeSousMenus3.add("Ajouter immatriculation");
-        listeSousMenus3.add("Supprimer immatriculation");
-		listeSousMenus3.add("Quitter");
+        listeSousMenus3.add("Modifier informations");
+        listeSousMenus3.add("Visualiser informations");
+        listeSousMenus3.add("Visualiser dépenses");
+        listeSousMenus3.add("Quitter");
         
         listeSousMenus.add(listeSousMenus1);
         listeSousMenus.add(listeSousMenus2);
@@ -89,7 +90,6 @@ public class Launcher {
     	        	case 1:
 						String [] information = m.afficherMenuConnexion();
 						c = cpt.getClientByEmailPassword(bdd,information[0], information[1]);
-						System.out.println(c);
 						if(c != null){
 							m.setUser(c);
 						}
@@ -111,7 +111,8 @@ public class Launcher {
     			        		//TODO
     			        		break;
     			        	case 1:
-    			        		System.out.println("Vue réservations");
+    			        		ArrayList<Reservation> listeReserv = Reservation.getReservationbyUser(bdd, c.getIdCompte());
+    			        		m.afficherListeReservations(listeReserv);
     			        		//TODO
     			        		break;
     			        	case 2:
@@ -128,39 +129,44 @@ public class Launcher {
     	        		break;
     	        	case 1:
     	        		switch(choixUserMenuSecondaire) {
-    			        	case 0:
-    			        		System.out.println("Modification informations personnelles");
-    			        		//TODO
-    			        		break;
-    			        	case 1:
-    			        		System.out.println("Visualisation informations personnelles");
-    			        		//TODO
-    			        		break;
-    			        	case 2:
-    			        		System.out.println("Visualisation dépenses");
-    			        		//TODO
-    			        		break;
-							case 3:
-								break;
-    	        		}
+			        	case 0:
+			        		System.out.println("Visualiser immatriculations");
+			        		//TODO
+			        		break;
+			        	case 1:
+			        		System.out.println("Ajouter immatriculation");
+			        		//TODO
+			        		break;
+			        	case 2:
+			        		System.out.println("Supprimer immatriculation");
+			        		//TODO
+			        		break;
+						case 3:
+							break;
+		        	}
     	        		break;
     	        	case 2:
     	        		switch(choixUserMenuSecondaire) {
-    			        	case 0:
-    			        		System.out.println("Visualiser immatriculations");
-    			        		//TODO
-    			        		break;
-    			        	case 1:
-    			        		System.out.println("Ajouter immatriculation");
-    			        		//TODO
-    			        		break;
-    			        	case 2:
-    			        		System.out.println("Supprimer immatriculation");
-    			        		//TODO
-    			        		break;
-							case 3:
-								break;
-    		        	}
+			        	case 0:
+			        		Compte cModifie = m.afficherModificationInformationsPersonnelles();
+			        		c.setEmail(cModifie.getEmail());
+			        		c.setMdp(cModifie.getMdp());
+			        		c.setNom(cModifie.getNom());
+			        		c.setPrenom(cModifie.getPrenom());
+			        		c.setAge(cModifie.getAge());
+				        	c.updateCompte(bdd);
+			        		//TODO
+			        		break;
+			        	case 1:
+			        		m.afficherInformationsPersonnelles();
+			        		break;
+			        	case 2:
+			        		System.out.println("Visualisation dépenses");
+			        		//TODO
+			        		break;
+						case 3:
+							break;
+	        		}
     	        		break;
     	        	case 3:
     	        		c = null;

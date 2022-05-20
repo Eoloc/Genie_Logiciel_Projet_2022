@@ -157,6 +157,15 @@ public class Compte {
         }
         return compte;
     }
+    
+    public void updateCompte(DatabaseController bdd)throws SQLException {
+    	Statement st = bdd.getCon().createStatement();
+    	try {
+        	st.executeQuery("UPDATE compte SET email = '"+this.email+"', mdp = '"+this.mdp+"', nom = '"+this.nom+"', prenom = '"+this.prenom+"', age = "+this.age+" where idCompte = "+this.idCompte+";");
+    	} catch(Exception e) {
+    		
+    	}
+    }
 
     public void setEstClient(boolean estClient) {
         this.estClient = estClient;
@@ -186,7 +195,7 @@ public class Compte {
             System.out.println(ex.getMessage());
         }
         return "Compte est bien créé";
-        }
+     }
 }
 
 
