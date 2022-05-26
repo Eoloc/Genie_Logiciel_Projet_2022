@@ -5,10 +5,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="07f31be9-6a08-4d9f-a7f4-c7dbaec0f9d0" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/fr/ul/miage/Genie_Logiciel_Projet_2022/controller/VehiculeAssociationController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/fr/ul/miage/Genie_Logiciel_Projet_2022/model/VehiculeAssociation.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/fr/ul/miage/Genie_Logiciel_projet_2022/tests/CompteTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/fr/ul/miage/Genie_Logiciel_projet_2022/tests/VehiculeAssociationTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Conception/bdd.drawio" beforeDir="false" afterPath="$PROJECT_DIR$/Conception/bdd.drawio" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Launcher.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Launcher.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/fr/ul/miage/Genie_Logiciel_Projet_2022/controller/CompteController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/ul/miage/Genie_Logiciel_Projet_2022/controller/CompteController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/fr/ul/miage/Genie_Logiciel_Projet_2022/model/Compte.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/ul/miage/Genie_Logiciel_Projet_2022/model/Compte.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fr/ul/miage/Genie_Logiciel_Projet_2022/service/ServiceCompte.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -51,7 +58,8 @@
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/User/Desktop/M1/reseau/project_reseau_stomp/stomp&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/User/Desktop/M1/Génie Logiciel/Genie_Logiciel_Projet_2022/src/test/java/fr/ul/miage/Genie_Logiciel_projet_2022&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
     &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
     &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
     &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
@@ -60,6 +68,7 @@
 }</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\User\Desktop\M1\Génie Logiciel\Genie_Logiciel_Projet_2022\src\test\java\fr\ul\miage\Genie_Logiciel_projet_2022" />
       <recent name="C:\Users\eoloc\Documents\Developpement\cours\miage\M1\S8\Genie Logiciel\Projet\Genie_Logiciel_Projet_2022\src\main\java\controller" />
       <recent name="C:\Users\eoloc\Documents\Developpement\cours\miage\M1\S8\Genie Logiciel\Projet\Genie_Logiciel_Projet_2022\src\main\java\model" />
       <recent name="C:\Users\eoloc\Documents\Developpement\cours\miage\M1\S8\Genie Logiciel\Projet\Genie_Logiciel_Projet_2022\src\main\java\service" />
@@ -70,7 +79,12 @@
       <recent name="C:\Users\eoloc\Documents\Developpement\cours\miage\M1\S8\Genie Logiciel\Projet\Genie_Logiciel_Projet_2022\src\fr\ul\miage" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunAnythingCache">
+    <option name="myCommands">
+      <command value="mvn clean" />
+    </option>
+  </component>
+  <component name="RunManager" selected="JUnit.VehiculeAssociationTest.suppression">
     <configuration name="Launcher" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="Launcher" />
       <module name="Genie_Logiciel_Projet_2022" />
@@ -78,6 +92,27 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="VehiculeAssociationTest.suppression" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Genie_Logiciel_Projet_2022" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="fr.ul.miage.Genie_Logiciel_projet_2022.tests.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="fr.ul.miage.Genie_Logiciel_projet_2022.tests" />
+      <option name="MAIN_CLASS_NAME" value="fr.ul.miage.Genie_Logiciel_projet_2022.tests.VehiculeAssociationTest" />
+      <option name="METHOD_NAME" value="suppression" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JUnit.VehiculeAssociationTest.suppression" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -95,6 +130,8 @@
       <workItem from="1652701240101" duration="687000" />
       <workItem from="1652795747045" duration="4560000" />
       <workItem from="1652873959963" duration="489000" />
+      <workItem from="1652992462173" duration="16288000" />
+      <workItem from="1653576075839" duration="41000" />
     </task>
     <servers />
   </component>
@@ -119,20 +156,6 @@
           <properties class="org.postgresql.util.PSQLException" package="org.postgresql.util" />
           <option name="timeStamp" value="1" />
         </breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/Launcher.java</url>
-          <line>34</line>
-          <option name="timeStamp" value="2" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-method">
-          <url>file://$PROJECT_DIR$/src/main/java/fr/ul/miage/Genie_Logiciel_Projet_2022/model/Compte.java</url>
-          <line>181</line>
-          <properties class="fr.ul.miage.Genie_Logiciel_Projet_2022.model.Compte" method="inscrire">
-            <option name="EMULATED" value="true" />
-            <option name="WATCH_EXIT" value="false" />
-          </properties>
-          <option name="timeStamp" value="3" />
-        </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
   </component>

@@ -1,5 +1,7 @@
 import fr.ul.miage.Genie_Logiciel_Projet_2022.controller.BorneController;
+import fr.ul.miage.Genie_Logiciel_Projet_2022.controller.CompteController;
 import fr.ul.miage.Genie_Logiciel_Projet_2022.controller.DatabaseController;
+import fr.ul.miage.Genie_Logiciel_Projet_2022.controller.VehiculeAssociationController;
 import fr.ul.miage.Genie_Logiciel_Projet_2022.model.Compte;
 import fr.ul.miage.Genie_Logiciel_Projet_2022.view.MenuPrincipal;
 import org.ini4j.Ini;
@@ -22,17 +24,20 @@ public class Launcher {
 		System.out.println();
 		assert ini != null;
 		DatabaseController bdd = new DatabaseController(ini.get("database", "user"), ini.get("database", "password"), ini.get("database", "port"));
-        Compte cpt = new Compte();
 		bdd.connexionDatabase();
 
         ArrayList<Compte> comptes = bdd.getAllClient();
         BorneController borneController = new BorneController(bdd);
+		CompteController compteController = new CompteController(bdd);
         for(Compte compte : comptes){
             System.out.println(compte);
         }
 
-        //cpt.getClientByEmailPassword(bdd,"gerant@gmail.com", "1");
-		//cpt.inscrire(bdd, "tt@h.fr","1254","tt","op",20);
+		VehiculeAssociationController vehiculeAssociationController = new VehiculeAssociationController(bdd);
+
+		//vehiculeAssociationController.enregisterMatricule("AA123AA",2);
+		//vehiculeAssociationController.supprimerMatricule("AA123AA");
+
 
         ArrayList<ArrayList<String>> listeMenus = new ArrayList<ArrayList<String>>();
         
@@ -71,10 +76,7 @@ public class Launcher {
         listeSousMenus.add(listeSousMenus1);
         listeSousMenus.add(listeSousMenus2);
         listeSousMenus.add(listeSousMenus3);
-        
-        
-        
-        
+
         Compte c = null;
         MenuPrincipal m = new MenuPrincipal(c,listeMenus,listeSousMenus);
         int choixUserMenuPrincipal = m.afficherMenu();
@@ -84,13 +86,15 @@ public class Launcher {
         	if(c == null) {
             	switch(choixUserMenuPrincipal) {
     	        	case 0:
-    	        		m.afficherMenuInscription();
-    	        		//appel méthode inscription (voir retour menuInscription)
+    	        		//Menu inscription
+						String [] informationInscription = m.afficherMenuInscription();
+						c=compteController.inscrire(0,informationInscription[0],informationInscription[1],informationInscription[2],informationInscription[3],
+								Integer.parseInt(informationInscription[4]),true,false,false);
     	        	break;
     	        	case 1:
-    	        		m.afficherMenuConnexion();
-						//cpt.getClientByEmailPassword(bdd,m.afficherMenuConnexion()., "1");
-    	        		//appel méthode connexion (voir retour menuConnexion)
+						//menu connexion
+						String [] information = m.afficherMenuConnexion();
+						c=compteController.seConnecter(information[0], information[1]);
     	        	break;
     	        	case 2:
     	        		finProgramme = true;
