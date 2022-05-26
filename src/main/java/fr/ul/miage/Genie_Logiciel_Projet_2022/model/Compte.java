@@ -106,6 +106,9 @@ public class Compte {
     public void setEstAdministrateur(boolean estAdministrateur) {
         this.estAdministrateur = estAdministrateur;
     }
+    public void setEstClient(boolean estClient) {
+        this.estClient = estClient;
+    }
 
 
 
@@ -140,15 +143,22 @@ public class Compte {
         return comptes;
     }
 
+
+
+
+    //cette méthode permet de récupèrer un compte en lui passant trois paramètre la BDD, email et mot de passe
     public Compte getClientByEmailPassword(DatabaseController bdd, String email, String mdp) throws SQLException {
+
         Compte compte = null;
-        try (PreparedStatement st = bdd.getCon().prepareStatement("SELECT * FROM compte c where c.email='" + email + "' and c.mdp='" + mdp+"'");
-        ResultSet rs = st.executeQuery()){
+        try (PreparedStatement st = bdd.getCon().prepareStatement("SELECT * FROM compte c where c.email='"+email+"' and c.mdp='"+mdp+"'");
+             ResultSet rs = st.executeQuery()){
+
             while (rs.next()){
                 compte = new Compte(rs.getInt(1), rs.getString(2),
                         rs.getString(3), rs.getString(4), rs.getString(5),
                         rs.getInt(6), rs.getBoolean(7), rs.getBoolean(8),
                         rs.getBoolean(9));
+
 
             }
         } catch (SQLException ex) {
@@ -156,37 +166,57 @@ public class Compte {
             compte = null;
         }
         return compte;
+
+            }
+
+
+    //cette méthode permet de récupèrer le max d'id dans la table compte afin de génrérer un id lors de l'inscription
+    public int getMaxId(DatabaseController bdd) throws SQLException{
+        Compte compte = null;
+        int idCompte = 0;
+        try (PreparedStatement st = bdd.getCon().prepareStatement("SELECT MAX(idcompte) FROM compte ");
+             ResultSet rs = st.executeQuery()){
+            while (rs.next()){
+                idCompte = rs.getInt(1);
+            }
+
+        } catch (SQLException ex) {
+            System.out.println(ex);
+
+        }
+        return idCompte;
+
     }
+    public Compte inscrire(DatabaseController bdd,int id, String email, String mdp, String nom, String prenom, int age, boolean estClient, boolean estGerant, boolean estAdministrateur) throws SQLException {
 
-    public void setEstClient(boolean estClient) {
-        this.estClient = estClient;
-    }
 
-    public String inscrire(DatabaseController bdd,Compte cpt) throws SQLException {
-
-        String sql = "INSERT INTO compte (email, mdp, nom, prenom, age, estClient, estGerant, estAdministrateur)"
-                + "VALUES(?,?,?,?,?,TRUE,FALSE,FALSE)";
+        Compte compte = new Compte();
+        id=getMaxId(bdd)+1;
+        String sql = "INSERT INTO compte (idcompte,email, mdp, nom, prenom, age, estClient, estGerant, estAdministrateur)"
+                + "VALUES(?,?,?,?,?,?,?,?,?)";
 
         try (
                 PreparedStatement pstmt = bdd.getCon().prepareStatement(sql,
                         Statement.RETURN_GENERATED_KEYS)) {
 
-            pstmt.setString(2, cpt.getEmail());
-            pstmt.setString(3, cpt.getMdp());
-            pstmt.setString(4, cpt.getNom());
-            pstmt.setString(5, cpt.getPrenom());
-            pstmt.setInt(6, cpt.getAge());
-            pstmt.setBoolean(7, cpt.isEstClient());
-            pstmt.setBoolean(8, cpt.isEstGerant());
-            pstmt.setBoolean(9, cpt.isEstAdministrateur());
+            pstmt.setInt(1, id);
+            pstmt.setString(2, email);
+            pstmt.setString(3, mdp);
+            pstmt.setString(4, nom);
+            pstmt.setString(5, prenom);
+            pstmt.setInt(6, age);
+            pstmt.setBoolean(7, estClient);
+            pstmt.setBoolean(8, estGerant);
+            pstmt.setBoolean(9, estAdministrateur);
 
             pstmt.executeUpdate();
-
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }
-        return "Compte est bien créé";
-        }
+
+        compte = new Compte(id,email,mdp,nom,prenom,age,estClient,estGerant,estAdministrateur);
+        return compte;
+    }
 }
 
 

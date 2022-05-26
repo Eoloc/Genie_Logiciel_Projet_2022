@@ -13,29 +13,29 @@ public class CompteController {
 	public CompteController(DatabaseController bd) {
 		bdd = bd;
 	}
-	public String seConnecter(String email,String mdp ) throws SQLException {
-		StringBuilder res = new StringBuilder();
-		 Compte compte = new Compte();
-		//ArrayList<Compte> comptes = new ArrayList<>();
-		compte.getClientByEmailPassword(bdd,email,mdp);
-
-			if (email == compte.getEmail() && mdp == compte.getMdp()) {
-				System.out.println("Connexion est réussi");
-			}
-			else if (email != compte.getEmail() || mdp != compte.getMdp()) {
-				System.out.println("Les informations que vous avez fourni ne sont pas correctes");
-			}
-			else {
-				System.out.println("Les informations que vous avez fourni ne sont pas correctes");
-			}
-
-		return res.toString();
-	}
-
-	public String inscrire(Compte cpt) throws SQLException {
+	public Compte seConnecter(String email,String mdp ) throws SQLException {
+		Compte cpt ;
 		Compte compte = new Compte();
-		compte.inscrire(bdd, cpt);
-		return "Le compte est bien créé";
+
+		cpt = compte.getClientByEmailPassword(bdd,email,mdp);
+
+			if (cpt.equals(null) ){
+				System.out.println("Les informations que vous avez fourni ne sont pas correctes");
+			}
+			else  {
+				System.out.println("Connexion réussi");
+			}
+		return cpt;
 	}
+
+	public Compte inscrire(int id, String email, String mdp, String nom, String prenom, int age, boolean estClient, boolean estGerant, boolean estAdministrateur) throws SQLException {
+
+		Compte cpt ;
+		Compte compte = new Compte();
+		cpt = compte.inscrire(bdd,id,email,mdp,nom,prenom,age,estClient,estGerant,estAdministrateur);
+			System.out.println("Le compte est bien crée");
+		return cpt;
+	}
+
 
 }
