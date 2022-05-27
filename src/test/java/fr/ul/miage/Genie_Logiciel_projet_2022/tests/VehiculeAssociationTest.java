@@ -1,4 +1,4 @@
-package fr.ul.miage.Genie_Logiciel_projet_2022.tests;
+package fr.ul.miage.Genie_Logiciel_Projet_2022.tests;
 
 import fr.ul.miage.Genie_Logiciel_Projet_2022.controller.DatabaseController;
 import fr.ul.miage.Genie_Logiciel_Projet_2022.controller.VehiculeAssociationController;
