@@ -120,24 +120,28 @@ public class MenuPrincipal implements Menu {
 			listeSousMenusAParcourir = this.listeSousMenusUsers;
 		}
 		System.out.println(listeMenusPrincipauxAParcourir.get(menuChoisi)+" :\n");
-		if(listeMenusPrincipauxAParcourir.size() != menuChoisi+1){
-			for(int i = 0; i<listeSousMenusAParcourir.get(menuChoisi).size();i++){
-				System.out.println(" - "+i+" - "+listeSousMenusAParcourir.get(menuChoisi).get(i)+"\n");
-			}
-			erreur = true;
-			while(erreur) {
-				try {
-					choix = sc.nextInt();
-					erreur = false;
-					while(choix > listeSousMenusAParcourir.get(menuChoisi).size()-1 || choix < 0) {
-						System.out.println("Choix invalide, merci de recommencer.\n");
+		try {
+			if(listeSousMenusAParcourir.get(menuChoisi) != null){
+				for(int i = 0; i<listeSousMenusAParcourir.get(menuChoisi).size();i++){
+					System.out.println(" - "+i+" - "+listeSousMenusAParcourir.get(menuChoisi).get(i)+"\n");
+				}
+				erreur = true;
+				while(erreur) {
+					try {
 						choix = sc.nextInt();
+						erreur = false;
+						while(choix > listeSousMenusAParcourir.get(menuChoisi).size()-1 || choix < 0) {
+							System.out.println("Choix invalide, merci de recommencer.\n");
+							choix = sc.nextInt();
+						}
+					}catch(Exception e) {
+						System.out.println("Valeur incorrecte. Veuillez réeffectuer la saisie.");
+						sc = new Scanner(System.in);
 					}
-				}catch(Exception e) {
-					System.out.println("Valeur incorrecte. Veuillez réeffectuer la saisie.");
-					sc = new Scanner(System.in);
 				}
 			}
+		}catch (Exception e) {
+			
 		}
 		return choix;
 	}

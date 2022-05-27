@@ -156,7 +156,7 @@ public class Launcher {
     	        		switch(choixUserMenuSecondaire) {
     			        	case 0:
     			        		
-    			        		if(m.getUser().isEstGerant()) {
+    			        		if(c.isEstGerant()) {
     			        			String listeBornes = borneController.consulterEtatBorne();
     			        			m.afficherEtatBornes(listeBornes);
     			        		}else {
@@ -166,7 +166,7 @@ public class Launcher {
     			        		break;
     			        	case 1:
 
-    			        		if(m.getUser().isEstGerant()) {
+    			        		if(c.isEstGerant()) {
     			        			//Liste réservations tout clients
     			        			//TODO
     			        		}else {
@@ -181,7 +181,7 @@ public class Launcher {
     			        		break;
     			        	case 2:
     			        		System.out.println("Modification réservation");
-    			        		if(m.getUser().isEstGerant()) {
+    			        		if(c.isEstGerant()) {
     			        			
     			        		} else {
     			        			
@@ -190,7 +190,7 @@ public class Launcher {
     			        		break;
     			        	case 3:
     			        		System.out.println("Disponibilité bornes");
-    			        		if(m.getUser().isEstGerant()) {
+    			        		if(c.isEstGerant()) {
     			        			
     			        		}else {
     			        			
@@ -205,7 +205,7 @@ public class Launcher {
     	        		switch(choixUserMenuSecondaire) {
 			        	case 0:
 			        		System.out.println("Visualiser immatriculations");
-			        		if(m.getUser().isEstGerant()) {
+			        		if(c.isEstGerant()) {
 			        			
 			        		}else {
 			        			
@@ -214,7 +214,7 @@ public class Launcher {
 			        		break;
 			        	case 1:
 			        		System.out.println("Ajouter immatriculation");
-			        		if(m.getUser().isEstGerant()) {
+			        		if(c.isEstGerant()) {
 			        			
 			        		}else {
 			        			
@@ -223,7 +223,7 @@ public class Launcher {
 			        		break;
 			        	case 2:
 			        		System.out.println("Supprimer immatriculation");
-			        		if(m.getUser().isEstGerant()) {
+			        		if(c.isEstGerant()) {
 			        			
 			        		}else {
 			        			
@@ -252,7 +252,7 @@ public class Launcher {
 			        		break;
 			        	case 2:
 			        		System.out.println("Visualisation dépenses");
-			        		if(m.getUser().isEstGerant()) {
+			        		if(c.isEstGerant()) {
 			        			
 			        		}else {
 			        			
@@ -264,15 +264,15 @@ public class Launcher {
 	        		}
     	        		break;
     	        	case 3:
-    	        		if(m.getUser().isEstGerant()) {
-    	        			  	        
+    	        		if(c.isEstGerant()) {
+    	        			
     	        		} else {
     	        			c = null;
     						m.setUser(c);
         	        		break;
     	        		}
     	        	case 4:
-    	        		if(m.getUser().isEstGerant()) {
+    	        		if(c.isEstGerant()) {
     	        			c = null;
     						m.setUser(c);
         	        		break;  	        
