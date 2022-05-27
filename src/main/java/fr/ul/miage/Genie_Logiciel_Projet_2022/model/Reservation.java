@@ -1,9 +1,6 @@
 package fr.ul.miage.Genie_Logiciel_Projet_2022.model;
 
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.ArrayList;
 
 import fr.ul.miage.Genie_Logiciel_Projet_2022.controller.DatabaseController;
@@ -66,10 +63,48 @@ public class Reservation {
 	        }
 	        return reservations;
 	  }
-	 
-	 
-	 
-	 
-	 
-	
+
+	public Boolean insertNewReservation(DatabaseController bdd, String dateDebut, String dateFin, String etatReservation, int idCompte, int idBorne, boolean estPermanente) throws SQLException {
+
+		String sql = "INSERT INTO reservation (datedebut, datefin, etatreservation, idcompte, idborne, estPermanente)"
+				+ "VALUES(?, ?, ?, ?, ?, ?)";
+		try {
+			PreparedStatement pstmt = bdd.getCon().prepareStatement(sql);
+			pstmt.setDate(1, Date.valueOf(dateDebut));
+			pstmt.setDate(2, Date.valueOf(dateFin));
+			pstmt.setString(3, etatReservation);
+			pstmt.setInt(4, idCompte);
+			pstmt.setInt(5, idBorne);
+			pstmt.setBoolean(6, estPermanente);
+			pstmt.executeUpdate();
+		} catch (SQLException ex) {
+			System.out.println(ex.getMessage());
+			return false;
+		}
+		return true;
+	}
+
+	public String getDateDebut() {
+		return dateDebut;
+	}
+
+	public String getDateFin() {
+		return dateFin;
+	}
+
+	public String getEtatReservation() {
+		return etatReservation;
+	}
+
+	public int getIdCompte() {
+		return idCompte;
+	}
+
+	public int getIdBorne() {
+		return idBorne;
+	}
+
+	public boolean getEstPermanente() {
+		return estPermanente;
+	}
 }
