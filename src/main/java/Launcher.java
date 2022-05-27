@@ -1,8 +1,6 @@
-import fr.ul.miage.Genie_Logiciel_Projet_2022.controller.BorneController;
-import fr.ul.miage.Genie_Logiciel_Projet_2022.controller.CompteController;
-import fr.ul.miage.Genie_Logiciel_Projet_2022.controller.DatabaseController;
-import fr.ul.miage.Genie_Logiciel_Projet_2022.controller.VehiculeAssociationController;
+import fr.ul.miage.Genie_Logiciel_Projet_2022.controller.*;
 import fr.ul.miage.Genie_Logiciel_Projet_2022.model.Compte;
+import fr.ul.miage.Genie_Logiciel_Projet_2022.model.HistoriqueDepense;
 import fr.ul.miage.Genie_Logiciel_Projet_2022.view.MenuPrincipal;
 import org.ini4j.Ini;
 
@@ -36,8 +34,16 @@ public class Launcher {
 
 		VehiculeAssociationController vehiculeAssociationController = new VehiculeAssociationController(bdd);
 
-		//vehiculeAssociationController.enregisterMatricule("AA123AA",2);
-		//vehiculeAssociationController.supprimerMatricule("AA123AA");
+		HistoriqueDepenseController historiqueDepenseController = new HistoriqueDepenseController(bdd);
+
+
+
+		VariableController variableController = new VariableController(bdd);
+		variableController.updatePrixDemiHeure(25.00);
+		variableController.updatePrixDemiHeureSurtaxe(50.00);
+		variableController.updatequantiteBorne(25);
+
+
 
 
         ArrayList<ArrayList<String>> listeMenus = new ArrayList<ArrayList<String>>();
@@ -134,7 +140,8 @@ public class Launcher {
     			        		break;
     			        	case 3:
     			        		System.out.println("Disponibilité bornes");
-    			        		//TODO
+    			        		//Afficher quantitée des bornes diponibles
+								borneController.getQteBorneDisponible();
     			        		break;
 							case 4:
 								break;
@@ -151,8 +158,9 @@ public class Launcher {
     			        		//TODO
     			        		break;
     			        	case 2:
+								// permet de voir les dépenses par client
     			        		System.out.println("Visualisation dépenses");
-    			        		//TODO
+								historiqueDepenseController.getDepenseByClient(c.getIdCompte());
     			        		break;
 							case 3:
 								break;
@@ -165,12 +173,22 @@ public class Launcher {
     			        		//TODO
     			        		break;
     			        	case 1:
-    			        		System.out.println("Ajouter immatriculation");
-    			        		//TODO
+								//Enregistrement d'immatricule
+    			        		System.out.println("Ajouter immatriculation\n");
+								Scanner sc = new Scanner(System.in);
+								String matricule;
+								System.out.println("Entrez l'immatricule: ");
+								matricule = sc.nextLine();
+								vehiculeAssociationController.enregisterMatricule(matricule,c.getIdCompte());
     			        		break;
     			        	case 2:
+								//Suppression d'immatricule
     			        		System.out.println("Supprimer immatriculation");
-    			        		//TODO
+								sc = new Scanner(System.in);
+								System.out.println("Entrez l'immatricule: ");
+								matricule = sc.nextLine();
+								vehiculeAssociationController.supprimerMatricule(matricule);
+
     			        		break;
 							case 3:
 								break;

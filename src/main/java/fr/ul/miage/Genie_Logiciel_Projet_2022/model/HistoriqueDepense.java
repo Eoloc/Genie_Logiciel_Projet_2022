@@ -42,4 +42,20 @@ public class HistoriqueDepense {
         }
         return historiqueDepenses;
   }
+
+	public void getDepenseByClient(DatabaseController bdd, int idCompte) throws SQLException {
+		ArrayList<HistoriqueDepense> historiqueDepenses = new ArrayList<>();
+		double montant=0;
+		Statement st = bdd.getCon().createStatement();
+		ResultSet rs = st.executeQuery("SELECT * FROM HistoriqueDepense where idCompte="+idCompte);
+		while(rs.next()) {
+			HistoriqueDepense historiqueDepense = new HistoriqueDepense(rs.getInt(1), rs.getInt(2),rs.getDouble(3));
+			historiqueDepenses.add(historiqueDepense);
+		}
+		for(int i=0;i<historiqueDepenses.size();i++ ){
+			montant=montant + historiqueDepenses.get(i).montant;
+		}
+		System.out.println("l'id client : "+idCompte+ " a dépensé une totalité de :"+montant);
+	}
+
 }

@@ -11,6 +11,9 @@ public class Borne {
     private int idBorne;
     private String etatBorne;
 
+    public Borne(){
+
+    }
     public Borne(int id, String etat) {
         idBorne = id;
         etatBorne = etat;
@@ -33,5 +36,15 @@ public class Borne {
 
     public String getEtatBorne() {
         return etatBorne;
+    }
+
+    public int getQteBorneDisponible(DatabaseController bdd) throws SQLException {
+        Statement st = bdd.getCon().createStatement();
+        int qteDisponible = 0;
+        ResultSet rs = st.executeQuery("SELECT count(etatborne) AS total FROM borne where etatborne='Disponible'");
+        while(rs.next()) {
+            qteDisponible = rs.getInt("total");
+        }
+        return qteDisponible;
     }
 }

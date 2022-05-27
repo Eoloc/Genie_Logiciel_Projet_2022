@@ -23,4 +23,13 @@ public class BorneController {
         }
         return res.toString();
     }
+
+    public void getQteBorneDisponible() throws SQLException {
+        Borne borne = new Borne();
+        int quantite= 0;
+        quantite=borne.getQteBorneDisponible(bdd);
+        System.out.println("La quantité des bornes disponibles est :" + quantite +" Borne");
+    }
+
+
 }
