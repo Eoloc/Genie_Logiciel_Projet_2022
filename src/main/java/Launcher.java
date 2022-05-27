@@ -1,11 +1,7 @@
 import fr.ul.miage.Genie_Logiciel_Projet_2022.controller.BorneController;
 import fr.ul.miage.Genie_Logiciel_Projet_2022.controller.CompteController;
 import fr.ul.miage.Genie_Logiciel_Projet_2022.controller.DatabaseController;
-<<<<<<< HEAD
-import fr.ul.miage.Genie_Logiciel_Projet_2022.controller.VehiculeAssociationController;
-=======
 import fr.ul.miage.Genie_Logiciel_Projet_2022.model.Borne;
->>>>>>> Affichage_EtatBornes
 import fr.ul.miage.Genie_Logiciel_Projet_2022.model.Compte;
 import fr.ul.miage.Genie_Logiciel_Projet_2022.model.Reservation;
 import fr.ul.miage.Genie_Logiciel_Projet_2022.view.MenuPrincipal;
