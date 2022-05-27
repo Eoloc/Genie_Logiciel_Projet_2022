@@ -187,9 +187,20 @@ public class Compte {
         return idCompte;
 
     }
+    
+    
+    
+    public void updateCompte(DatabaseController bdd)throws SQLException {
+    	Statement st = bdd.getCon().createStatement();
+    	try {
+        	st.executeQuery("UPDATE compte SET email = '"+this.email+"', mdp = '"+this.mdp+"', nom = '"+this.nom+"', prenom = '"+this.prenom+"', age = "+this.age+" where idCompte = "+this.idCompte+";");
+    	} catch(Exception e) {
+    		
+    	}
+    }
+    
+    
     public Compte inscrire(DatabaseController bdd,int id, String email, String mdp, String nom, String prenom, int age, boolean estClient, boolean estGerant, boolean estAdministrateur) throws SQLException {
-
-
         Compte compte = new Compte();
         id=getMaxId(bdd)+1;
         String sql = "INSERT INTO compte (idcompte,email, mdp, nom, prenom, age, estClient, estGerant, estAdministrateur)"
@@ -213,7 +224,6 @@ public class Compte {
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }
-
         compte = new Compte(id,email,mdp,nom,prenom,age,estClient,estGerant,estAdministrateur);
         return compte;
     }
