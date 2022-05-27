@@ -185,11 +185,9 @@ public class MenuPrincipal implements Menu {
 	}
 	
 	
-	public void afficherEtatBornes(ArrayList<Borne> listeBornes) {
+	public void afficherEtatBornes(String listeBornes) {
 		String affichage = "===============================\n";
-		for(Borne b : listeBornes) {
-			affichage += b.getIdBorne() + ": " + b.getEtatBorne()+"\n";
-		}
+		affichage += listeBornes;
 		affichage += "===============================\n";
 		System.out.println(affichage);
 	}

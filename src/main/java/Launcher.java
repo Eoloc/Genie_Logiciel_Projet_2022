@@ -157,7 +157,7 @@ public class Launcher {
     			        	case 0:
     			        		
     			        		if(m.getUser().isEstGerant()) {
-    			        			ArrayList<Borne> listeBornes = Borne.getAllBorne(bdd);
+    			        			String listeBornes = borneController.consulterEtatBorne();
     			        			m.afficherEtatBornes(listeBornes);
     			        		}else {
     			        			System.out.println("Menu réservation");
