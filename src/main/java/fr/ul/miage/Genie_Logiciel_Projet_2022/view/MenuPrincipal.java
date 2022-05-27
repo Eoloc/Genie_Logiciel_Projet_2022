@@ -120,7 +120,7 @@ public class MenuPrincipal implements Menu {
 			listeSousMenusAParcourir = this.listeSousMenusUsers;
 		}
 		System.out.println(listeMenusPrincipauxAParcourir.get(menuChoisi)+" :\n");
-		if(listeSousMenusAParcourir.size() != menuChoisi){
+		if(listeMenusPrincipauxAParcourir.size() != menuChoisi+1){
 			for(int i = 0; i<listeSousMenusAParcourir.get(menuChoisi).size();i++){
 				System.out.println(" - "+i+" - "+listeSousMenusAParcourir.get(menuChoisi).get(i)+"\n");
 			}
@@ -333,12 +333,10 @@ public class MenuPrincipal implements Menu {
 		return this.user;
 	}
 	
-	public void afficherListeReservations(ArrayList<Reservation> liste) {
+	public void afficherListeReservations(String liste) {
 		String affichage = "===============================\n";
 		affichage += "Mes réservations: \n";
-		for(Reservation r : liste) {
-			affichage += r.toString()+"\n";
-		}
+		affichage += liste;
 		affichage += "===============================\n";
 		System.out.println(affichage);
 	}
