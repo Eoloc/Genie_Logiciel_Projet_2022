@@ -167,8 +167,9 @@ public class Launcher {
     			        	case 1:
 
     			        		if(c.isEstGerant()) {
-    			        			//Liste réservations tout clients
-    			        			//TODO
+    			        			//Liste réservations par borne
+    			        			String listeReserv = reservationController.consulterReservationsParBorne();
+    			        			m.afficherListeReservations(listeReserv);
     			        		}else {
     			        			//Liste réservations 
     			        			String listeReserv = reservationController.consulterReservationParUtilisateur(c.getIdCompte());
@@ -215,22 +216,23 @@ public class Launcher {
 			        		
 			        		break;
 			        	case 1:
-			        		System.out.println("Ajouter immatriculation");
+			        		
 			        		if(c.isEstGerant()) {
-			        			
+			        			//TODO
 			        		}else {
-			        			
+			        			System.out.println("Ajouter immatriculation");
+			        			//TODO
 			        		}
-			        		//TODO
+			        		
 			        		break;
 			        	case 2:
-			        		System.out.println("Supprimer immatriculation");
+			        		
 			        		if(c.isEstGerant()) {
 			        			
 			        		}else {
-			        			
+			        			System.out.println("Supprimer immatriculation");
+			        			//TODO
 			        		}
-			        		//TODO
 			        		break;
 						case 3:
 							break;

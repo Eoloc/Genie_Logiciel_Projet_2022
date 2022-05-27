@@ -84,6 +84,16 @@ public class Reservation {
 		return reservation;
 	}
 
+	public static ArrayList<Reservation> getReservationbyIdBorne(DatabaseController bdd, int idBorne) throws SQLException {
+		ArrayList<Reservation> reservations = new ArrayList<Reservation>();
+		Statement st = bdd.getCon().createStatement();
+		ResultSet rs = st.executeQuery("SELECT * FROM reservation WHERE idBorne = '"+idBorne+"'");
+		while(rs.next()) {
+			reservations.add(new Reservation(rs.getInt(1), rs.getString(2),rs.getString(3),rs.getString(4),rs.getInt(5),rs.getInt(6),rs.getBoolean(7)));
+		}
+		return reservations;
+	}
+	
 	public static Reservation insertNewReservation(DatabaseController bdd, String dateDebut, String dateFin, String etatReservation, int idCompte, int idBorne, boolean estPermanente) throws SQLException {
 		String sql = "INSERT INTO reservation (datedebut, datefin, etatreservation, idcompte, idborne, estPermanente)"
 				+ "VALUES(?, ?, ?, ?, ?, ?)";

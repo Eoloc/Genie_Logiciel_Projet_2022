@@ -2,6 +2,7 @@ package fr.ul.miage.Genie_Logiciel_Projet_2022.controller;
 
 
 import fr.ul.miage.Genie_Logiciel_Projet_2022.model.Borne;
+import fr.ul.miage.Genie_Logiciel_Projet_2022.model.Compte;
 import fr.ul.miage.Genie_Logiciel_Projet_2022.model.Reservation;
 
 import java.sql.SQLException;
@@ -30,6 +31,24 @@ public class ReservationController {
         return Reservation.insertNewReservation(bdd, dateDebut, dateFin, "En attente", idCompte, borne.getIdBorne(), estPermanente);
     }
 
+    public String consulterReservationsParBorne() throws SQLException {
+    	StringBuilder res = new StringBuilder();
+        ArrayList<Borne> bornes = Borne.getAllBorne(bdd);
+        for(Borne borne : bornes){
+        	res.append("Borne "+borne.getIdBorne()+" :");
+        	ArrayList<Reservation> reservations = Reservation.getReservationbyIdBorne(bdd,borne.getIdBorne());
+        	if(reservations.isEmpty()) {
+        		res.append(" Aucune réservation\n");
+        	}else {
+        		for(Reservation reservation : reservations) {
+            		res.append("\n"+"Date début: "+reservation.getDateDebut()).append("Date fin: "+reservation.getDateFin()).append("Etat réservation: "+reservation.getEtatReservation()).append("Permanente: "+reservation.getEstPermanente()).append("Id client: "+reservation.getIdBorne()).append("Id borne: "+reservation.getIdBorne()+"\n");
+            	}
+        	}
+        }
+        return res.toString();
+    }
+    
+    
     public Boolean supprimerReservation(DatabaseController bdd, int idReservation) throws SQLException {
         Reservation reservation = Reservation.getReservationbyId(bdd, idReservation);
         return reservation.deleteReservation(bdd, reservation);
