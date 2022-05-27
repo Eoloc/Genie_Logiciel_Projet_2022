@@ -285,12 +285,10 @@ public class MenuPrincipal implements Menu {
 		return this.user;
 	}
 	
-	public void afficherListeReservations(ArrayList<Reservation> liste) {
+	public void afficherListeReservations(String liste) {
 		String affichage = "===============================\n";
 		affichage += "Mes réservations: \n";
-		for(Reservation r : liste) {
-			affichage += r.toString()+"\n";
-		}
+		affichage += liste;
 		affichage += "===============================\n";
 		System.out.println(affichage);
 	}

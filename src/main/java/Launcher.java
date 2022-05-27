@@ -1,5 +1,6 @@
 import fr.ul.miage.Genie_Logiciel_Projet_2022.controller.BorneController;
 import fr.ul.miage.Genie_Logiciel_Projet_2022.controller.DatabaseController;
+import fr.ul.miage.Genie_Logiciel_Projet_2022.controller.ReservationController;
 import fr.ul.miage.Genie_Logiciel_Projet_2022.model.Compte;
 import fr.ul.miage.Genie_Logiciel_Projet_2022.model.Reservation;
 import fr.ul.miage.Genie_Logiciel_Projet_2022.view.MenuPrincipal;
@@ -28,6 +29,7 @@ public class Launcher {
 
         ArrayList<Compte> comptes = bdd.getAllClient();
         BorneController borneController = new BorneController(bdd);
+        ReservationController reservationController = new ReservationController(bdd);
         for(Compte compte : comptes){
             System.out.println(compte);
         }
@@ -111,7 +113,7 @@ public class Launcher {
     			        		//TODO
     			        		break;
     			        	case 1:
-    			        		ArrayList<Reservation> listeReserv = Reservation.getReservationbyUser(bdd, c.getIdCompte());
+    			        		String listeReserv = reservationController.consulterReservationParUtilisateur(c.getIdCompte());
     			        		m.afficherListeReservations(listeReserv);
     			        		//TODO
     			        		break;

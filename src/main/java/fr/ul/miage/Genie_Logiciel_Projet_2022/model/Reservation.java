@@ -66,6 +66,62 @@ public class Reservation {
 	        }
 	        return reservations;
 	  }
+
+	public int getIdReservation() {
+		return idReservation;
+	}
+
+	public void setIdReservation(int idReservation) {
+		this.idReservation = idReservation;
+	}
+
+	public String getDateDebut() {
+		return dateDebut;
+	}
+
+	public void setDateDebut(String dateDebut) {
+		this.dateDebut = dateDebut;
+	}
+
+	public String getDateFin() {
+		return dateFin;
+	}
+
+	public void setDateFin(String dateFin) {
+		this.dateFin = dateFin;
+	}
+
+	public String getEtatReservation() {
+		return etatReservation;
+	}
+
+	public void setEtatReservation(String etatReservation) {
+		this.etatReservation = etatReservation;
+	}
+
+	public int getIdCompte() {
+		return idCompte;
+	}
+
+	public void setIdCompte(int idCompte) {
+		this.idCompte = idCompte;
+	}
+
+	public int getIdBorne() {
+		return idBorne;
+	}
+
+	public void setIdBorne(int idBorne) {
+		this.idBorne = idBorne;
+	}
+
+	public boolean isEstPermanente() {
+		return estPermanente;
+	}
+
+	public void setEstPermanente(boolean estPermanente) {
+		this.estPermanente = estPermanente;
+	}
 	 
 	 
 	 
