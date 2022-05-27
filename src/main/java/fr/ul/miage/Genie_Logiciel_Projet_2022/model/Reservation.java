@@ -124,10 +124,6 @@ public class Reservation {
 		this.idReservation = idReservation;
 	}
 
-	public int getIdReservation() {
-		return idReservation;
-	}
-
 	public String getDateDebut() {
 		return dateDebut;
 	}
