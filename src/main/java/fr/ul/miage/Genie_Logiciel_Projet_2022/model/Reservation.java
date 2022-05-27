@@ -62,10 +62,29 @@ public class Reservation {
 	        	reservations.add(reservation);
 	        }
 	        return reservations;
-	  }
+	}
 
-	public Boolean insertNewReservation(DatabaseController bdd, String dateDebut, String dateFin, String etatReservation, int idCompte, int idBorne, boolean estPermanente) throws SQLException {
+	public static Reservation getReservationbyDateAndUser(DatabaseController bdd, String dateDebut, String dateFin, int idCompte) throws SQLException {
+		Reservation reservation = null;
+		Statement st = bdd.getCon().createStatement();
+		ResultSet rs = st.executeQuery("SELECT * FROM reservation WHERE dateDebut = '"+dateDebut+"' dateFin = '"+dateFin+"' idCompte = '"+idCompte+"'");
+		while(rs.next()) {
+			reservation = new Reservation(rs.getInt(1), rs.getString(2),rs.getString(3),rs.getString(4),rs.getInt(5),rs.getInt(6),rs.getBoolean(7));
+		}
+		return reservation;
+	}
 
+	public static Reservation getReservationbyId(DatabaseController bdd, int idReservation) throws SQLException {
+		Reservation reservation = null;
+		Statement st = bdd.getCon().createStatement();
+		ResultSet rs = st.executeQuery("SELECT * FROM reservation WHERE idReservation = '"+idReservation+"'");
+		while(rs.next()) {
+			reservation = new Reservation(rs.getInt(1), rs.getString(2),rs.getString(3),rs.getString(4),rs.getInt(5),rs.getInt(6),rs.getBoolean(7));
+		}
+		return reservation;
+	}
+
+	public static Reservation insertNewReservation(DatabaseController bdd, String dateDebut, String dateFin, String etatReservation, int idCompte, int idBorne, boolean estPermanente) throws SQLException {
 		String sql = "INSERT INTO reservation (datedebut, datefin, etatreservation, idcompte, idborne, estPermanente)"
 				+ "VALUES(?, ?, ?, ?, ?, ?)";
 		try {
@@ -79,9 +98,25 @@ public class Reservation {
 			pstmt.executeUpdate();
 		} catch (SQLException ex) {
 			System.out.println(ex.getMessage());
+			return null;
+		}
+		return getReservationbyDateAndUser(bdd, dateDebut, dateFin, idCompte);
+	}
+
+	public Boolean deleteReservation(DatabaseController bdd, Reservation reservation) throws SQLException {
+		String sql = "DELETE FROM reservation WHERE 'idReservation'='" + reservation.getIdReservation() +"'";
+		try {
+			PreparedStatement pstmt = bdd.getCon().prepareStatement(sql);
+			pstmt.executeUpdate();
+		} catch (SQLException ex) {
+			System.out.println(ex.getMessage());
 			return false;
 		}
 		return true;
+	}
+
+	public int getIdReservation() {
+		return idReservation;
 	}
 
 	public String getDateDebut() {

@@ -27,6 +27,17 @@ public class Borne {
         return bornes;
     }
 
+    public static ArrayList<Borne> getAllBorneByEtat(DatabaseController bdd, String etatBorne) throws SQLException {
+        ArrayList<Borne> bornes = new ArrayList<>();
+        Statement st = bdd.getCon().createStatement();
+        ResultSet rs = st.executeQuery("SELECT * FROM borne WHERE etatborne='" + etatBorne + "'");
+        while(rs.next()) {
+            Borne borne = new Borne(rs.getInt(1), rs.getString(2));
+            bornes.add(borne);
+        }
+        return bornes;
+    }
+
     public int getIdBorne() {
         return idBorne;
     }
