@@ -86,6 +86,7 @@ public class Launcher {
         listeMenusPrincipalAdmins.add("Gestion bornes");
         listeMenusPrincipalAdmins.add("Gestion utilisateurs et réservations");
         listeMenusPrincipalAdmins.add("Gestion profil");
+        listeMenusPrincipalAdmins.add("Gestion paramètres");
         listeMenusPrincipalAdmins.add("Quitter");
         
         //sous-menus administrateurs/gérants
@@ -258,9 +259,21 @@ public class Launcher {
 	        		}
     	        		break;
     	        	case 3:
-    	        		c = null;
-						m.setUser(c);
-    	        		break;
+    	        		if(m.getUser().isEstGerant()) {
+    	        			  	        
+    	        		} else {
+    	        			c = null;
+    						m.setUser(c);
+        	        		break;
+    	        		}
+    	        	case 4:
+    	        		if(m.getUser().isEstGerant()) {
+    	        			c = null;
+    						m.setUser(c);
+        	        		break;  	        
+    	        		} else {
+    	        			
+    	        		}
             	}
             }
         }
