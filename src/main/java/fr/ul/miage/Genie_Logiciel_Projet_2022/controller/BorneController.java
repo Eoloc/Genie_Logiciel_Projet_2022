@@ -23,4 +23,13 @@ public class BorneController {
         }
         return res.toString();
     }
+    
+    public String consulterEtatBorne() throws SQLException {
+        StringBuilder res = new StringBuilder();
+        ArrayList<Borne> bornes = Borne.getAllBorne(bdd);
+        for(Borne borne : bornes){
+            res.append("Borne ").append(borne.getIdBorne()).append(": "+borne.getEtatBorne()+"\n");
+        }
+        return res.toString();
+    }
 }
