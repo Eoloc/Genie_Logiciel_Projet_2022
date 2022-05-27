@@ -56,6 +56,17 @@ public class Reservation {
 	        return reservations;
 	  }
 	 
+	 public static ArrayList<Reservation> getReservationbyUser(DatabaseController bdd, int idCompte) throws SQLException {
+	        ArrayList<Reservation> reservations = new ArrayList<>();
+	        Statement st = bdd.getCon().createStatement();
+	        ResultSet rs = st.executeQuery("SELECT * FROM reservation WHERE idCompte = '"+idCompte+"'");
+	        while(rs.next()) {
+	        	Reservation reservation = new Reservation(rs.getInt(1), rs.getString(2),rs.getString(3),rs.getString(4),rs.getInt(5),rs.getInt(6),rs.getBoolean(7));
+	        	reservations.add(reservation);
+	        }
+	        return reservations;
+	  }
+	 
 	 
 	 
 	 
