@@ -337,6 +337,14 @@ public class MenuPrincipal implements Menu {
 		return this.user;
 	}
 	
+	public void afficherListeUtilisateurs(String liste) {
+		String affichage = "===============================\n";
+		affichage += "Liste utilisateurs: \n";
+		affichage += liste;
+		affichage += "===============================\n";
+		System.out.println(affichage);
+	}
+	
 	public void afficherListeReservations(String liste) {
 		String affichage = "===============================\n";
 		affichage += "Mes réservations: \n";

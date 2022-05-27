@@ -128,10 +128,9 @@ public class Compte {
                 '}';
     }
 
-    Connection con;
-    public ArrayList<Compte> getAllClient(DatabaseController bdd) throws SQLException {
+    public static ArrayList<Compte> getAllClient(DatabaseController bdd) throws SQLException {
         ArrayList<Compte> comptes = new ArrayList<>();
-        Statement st = con.createStatement();
+        Statement st = bdd.getCon().createStatement();
         ResultSet rs = st.executeQuery("SELECT * FROM compte");
         while (rs.next()) {
             Compte compte = new Compte(rs.getInt(1), rs.getString(2),

@@ -1,5 +1,6 @@
 package fr.ul.miage.Genie_Logiciel_Projet_2022.controller;
 
+import fr.ul.miage.Genie_Logiciel_Projet_2022.model.Borne;
 import fr.ul.miage.Genie_Logiciel_Projet_2022.model.Compte;
 
 import java.sql.SQLException;
@@ -37,5 +38,13 @@ public class CompteController {
 		return cpt;
 	}
 
+	public String consulterListeUtilisateurs() throws SQLException {
+		StringBuilder res = new StringBuilder();
+        ArrayList<Compte> comptes = Compte.getAllClient(bdd);
+        for(Compte compte : comptes){
+        	res.append("\nCompte "+compte.getIdCompte()+"\n").append("Nom: "+compte.getNom()+"\n").append("Prénom: "+compte.getPrenom()+"\n").append("Âge: "+compte.getAge()+"\n").append("Email: "+compte.getEmail()+"\n");
+        }
+        return res.toString();
+	}
 
 }

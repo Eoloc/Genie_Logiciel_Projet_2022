@@ -84,7 +84,7 @@ public class Launcher {
         //menu principal administrateurs/gérants
         ArrayList<String> listeMenusPrincipalAdmins = new ArrayList<String>();
         listeMenusPrincipalAdmins.add("Gestion bornes");
-        listeMenusPrincipalAdmins.add("Gestion utilisateurs et réservations");
+        listeMenusPrincipalAdmins.add("Gestion utilisateurs");
         listeMenusPrincipalAdmins.add("Gestion profil");
         listeMenusPrincipalAdmins.add("Gestion paramètres");
         listeMenusPrincipalAdmins.add("Quitter");
@@ -204,13 +204,15 @@ public class Launcher {
     	        	case 1:
     	        		switch(choixUserMenuSecondaire) {
 			        	case 0:
-			        		System.out.println("Visualiser immatriculations");
 			        		if(c.isEstGerant()) {
-			        			
+			        			//Affichage informations utilisateurs
+			        			String infoUtilisateurs = compteController.consulterListeUtilisateurs();
+			        			m.afficherListeUtilisateurs(infoUtilisateurs);
 			        		}else {
-			        			
+				        		System.out.println("Visualiser immatriculations");
+				        		//TODO
 			        		}
-			        		//TODO
+			        		
 			        		break;
 			        	case 1:
 			        		System.out.println("Ajouter immatriculation");
