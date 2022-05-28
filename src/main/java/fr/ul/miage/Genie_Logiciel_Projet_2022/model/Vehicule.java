@@ -46,6 +46,14 @@ public class Vehicule {
 	        return vehicules;
 	  }
 	 
-	 
+	 public static Vehicule getVehiculeByImmatriculation(DatabaseController bdd, String immatriculation) throws SQLException {
+		 Vehicule vehicule = null;
+		 Statement st = bdd.getCon().createStatement();
+		 ResultSet rs = st.executeQuery("SELECT * FROM vehicule where immatriculation='" + immatriculation + "'");
+		 while(rs.next()) {
+			 vehicule = new Vehicule(rs.getString(1), rs.getString(2),rs.getString(3),rs.getString(4));
+		 }
+		 return vehicule;
+	 }
 
 }

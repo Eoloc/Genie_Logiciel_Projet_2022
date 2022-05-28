@@ -111,4 +111,41 @@ public class VehiculeAssociation {
         }
     }
 
+    public static ArrayList<VehiculeAssociation> getAssociationByImmatriculation(DatabaseController bdd, String immatriculation) throws SQLException {
+        ArrayList<VehiculeAssociation> associations = new ArrayList<>();
+        Statement st = bdd.getCon().createStatement(); // Si on commence avant une réservation et qu'on finit pendant
+        ResultSet rs = st.executeQuery("select * from vehiculeassociation where immatriculation='" + immatriculation + "'");
+        while(rs.next()) {
+            VehiculeAssociation association = new VehiculeAssociation(rs.getString(1), rs.getInt(2),rs.getString(3));
+            associations.add(association);
+        }
+        return associations;
+    }
+
+    public static VehiculeAssociation insertNewAssociation(DatabaseController bdd, String immatriculation, int idCompte, String etatAssociation) throws SQLException {
+        String sql = "INSERT INTO reservation (immatriculation, idcompte, etatassociation)"
+                + "VALUES(?, ?, ?)";
+        try {
+            PreparedStatement pstmt = bdd.getCon().prepareStatement(sql);
+            pstmt.setString(1, immatriculation);
+            pstmt.setInt(2, idCompte);
+            pstmt.setString(3, etatAssociation);
+            pstmt.executeUpdate();
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+            return null;
+        }
+        return getAssociationByImmatriculationAndIdCompte(bdd, immatriculation, idCompte);
+    }
+
+    public static VehiculeAssociation getAssociationByImmatriculationAndIdCompte(DatabaseController bdd, String immatriculation, int idCompte) throws SQLException {
+        VehiculeAssociation association = null;
+        Statement st = bdd.getCon().createStatement(); // Si on commence avant une réservation et qu'on finit pendant
+        ResultSet rs = st.executeQuery("select * from vehiculeassociation where immatriculation='" + immatriculation + "' and idcompte='" + idCompte + "'");
+        while(rs.next()) {
+            association = new VehiculeAssociation(rs.getString(1), rs.getInt(2),rs.getString(3));
+        }
+        return association;
+    }
+
 }

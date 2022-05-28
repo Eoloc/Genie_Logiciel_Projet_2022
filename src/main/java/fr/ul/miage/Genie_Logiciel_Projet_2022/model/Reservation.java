@@ -18,8 +18,7 @@ public class Reservation {
 		
 	}
 	
-	public Reservation(int idReservation, String dateDebut, String dateFin,
-			String etatReservation, int idCompte, int idBorne, boolean estPermanente) {
+	public Reservation(int idReservation, String dateDebut, String dateFin, String etatReservation, int idCompte, int idBorne, boolean estPermanente) {
 		this.idReservation = idReservation;
 		this.dateDebut = dateDebut;
 		this.dateFin = dateFin;
@@ -67,7 +66,9 @@ public class Reservation {
 	public static Reservation getReservationbyDateAndUser(DatabaseController bdd, String dateDebut, String dateFin, int idCompte) throws SQLException {
 		Reservation reservation = null;
 		Statement st = bdd.getCon().createStatement();
-		ResultSet rs = st.executeQuery("SELECT * FROM reservation WHERE dateDebut = '"+dateDebut+"' dateFin = '"+dateFin+"' idCompte = '"+idCompte+"'");
+		System.out.println(dateDebut);
+		System.out.println(dateFin);
+		ResultSet rs = st.executeQuery("SELECT * FROM reservation WHERE dateDebut = '"+dateDebut+"' AND dateFin = '"+dateFin+"' AND idCompte = '"+idCompte+"'");
 		while(rs.next()) {
 			reservation = new Reservation(rs.getInt(1), rs.getString(2),rs.getString(3),rs.getString(4),rs.getInt(5),rs.getInt(6),rs.getBoolean(7));
 		}
@@ -84,13 +85,44 @@ public class Reservation {
 		return reservation;
 	}
 
+	public static ArrayList<Reservation> getAllReservationBetweenDates(DatabaseController bdd, String dateDebut, String dateFin) throws SQLException {
+		ArrayList<Reservation> reservations = new ArrayList<>();
+		Statement st = bdd.getCon().createStatement(); // Si on commence avant une réservation et qu'on finit pendant
+		ResultSet rs = st.executeQuery("select * from reservation where dateDebut >= '" + dateDebut + "' and dateDebut <= '" + dateFin + "' and dateFin >= '" + dateFin + "'");
+		while(rs.next()) {
+			Reservation reservation = new Reservation(rs.getInt(1), rs.getString(2),rs.getString(3),rs.getString(4),rs.getInt(5),rs.getInt(6),rs.getBoolean(7));
+			reservations.add(reservation);
+		}
+		st = bdd.getCon().createStatement(); // Si on est pendant une réservation
+		rs = st.executeQuery("select * from reservation where dateDebut <= '" + dateDebut + "' and dateFin >= '" + dateFin + "'");
+		while(rs.next()) {
+
+			Reservation reservation = new Reservation(rs.getInt(1), rs.getString(2),rs.getString(3),rs.getString(4),rs.getInt(5),rs.getInt(6),rs.getBoolean(7));
+			if (!reservations.contains(reservation)) {reservations.add(reservation);}
+
+		}
+		st = bdd.getCon().createStatement(); // Si on commence pendant une réservation et qu'on finit après
+		rs = st.executeQuery("select * from reservation where dateDebut <= '" + dateDebut + "' and dateFin >= '" + dateDebut + "' and dateFin <= '" + dateFin + "'");
+		while(rs.next()) {
+			Reservation reservation = new Reservation(rs.getInt(1), rs.getString(2),rs.getString(3),rs.getString(4),rs.getInt(5),rs.getInt(6),rs.getBoolean(7));
+			if (!reservations.contains(reservation)) {reservations.add(reservation);}
+		}
+		st = bdd.getCon().createStatement(); // Si on englobe une réservation
+		rs = st.executeQuery("select * from reservation where dateDebut >= '" + dateDebut + "' and dateFin <= '" + dateFin + "'");
+		while(rs.next()) {
+			Reservation reservation = new Reservation(rs.getInt(1), rs.getString(2),rs.getString(3),rs.getString(4),rs.getInt(5),rs.getInt(6),rs.getBoolean(7));
+			if (!reservations.contains(reservation)) {reservations.add(reservation);}
+		}
+		return reservations;
+	}
+
 	public static Reservation insertNewReservation(DatabaseController bdd, String dateDebut, String dateFin, String etatReservation, int idCompte, int idBorne, boolean estPermanente) throws SQLException {
 		String sql = "INSERT INTO reservation (datedebut, datefin, etatreservation, idcompte, idborne, estPermanente)"
 				+ "VALUES(?, ?, ?, ?, ?, ?)";
 		try {
 			PreparedStatement pstmt = bdd.getCon().prepareStatement(sql);
-			pstmt.setDate(1, Date.valueOf(dateDebut));
-			pstmt.setDate(2, Date.valueOf(dateFin));
+			pstmt.setTimestamp(1, Timestamp.valueOf(dateDebut));
+			pstmt.setTimestamp(2, Timestamp.valueOf(dateFin));
 			pstmt.setString(3, etatReservation);
 			pstmt.setInt(4, idCompte);
 			pstmt.setInt(5, idBorne);
@@ -104,7 +136,7 @@ public class Reservation {
 	}
 
 	public Boolean deleteReservation(DatabaseController bdd, Reservation reservation) throws SQLException {
-		String sql = "DELETE FROM reservation WHERE 'idReservation'='" + reservation.getIdReservation() +"'";
+		String sql = "DELETE FROM reservation WHERE idReservation='" + reservation.getIdReservation() +"'";
 		try {
 			PreparedStatement pstmt = bdd.getCon().prepareStatement(sql);
 			pstmt.executeUpdate();

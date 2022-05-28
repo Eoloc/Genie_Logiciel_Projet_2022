@@ -345,7 +345,77 @@ public class MenuPrincipal implements Menu {
 		System.out.println(affichage);
 	}
 
-	
+	public String[] afficherCreerReservation(){
+		String[] resultat = new String[4];
+		Scanner sc = new Scanner(System.in);
+		System.out.println("Choisir une date de début (exemple:  2022-05-28 15:30:00):\n");
+		boolean erreur = true;
+		while(erreur) {
+			try {
+				resultat[0] = sc.nextLine();
+				erreur = false;
+			} catch (Exception e) {
+				e.printStackTrace();
+				System.out.println("Valeur incorrecte. Veuillez réeffectuer la saisie.");
+				sc = new Scanner(System.in);
+			}
+		}
+		System.out.println("Choisir une date de fin (exemple:  2022-05-28 16:30:00):\n");
+		erreur = true;
+		while(erreur) {
+			try {
+				resultat[1] = sc.nextLine();
+				erreur = false;
+			} catch (Exception e) {
+				e.printStackTrace();
+				System.out.println("Valeur incorrecte. Veuillez réeffectuer la saisie.");
+				sc = new Scanner(System.in);
+			}
+		}
+		System.out.println("La réservation est-elle permanente ? 0: Oui, 1: Non\n");
+		erreur = true;
+		while(erreur) {
+			try {
+				resultat[2] = String.valueOf(sc.nextInt());
+				erreur = false;
+			} catch (Exception e) {
+				System.out.println("Valeur incorrecte. Veuillez réeffectuer la saisie.");
+				sc = new Scanner(System.in);
+			}
+		}
+		System.out.println("Veuillez saisir la plaque d'immatriculation de la voiture\n");
+		erreur = true;
+		sc = new Scanner(System.in);
+		while(erreur) {
+			try {
+				resultat[3] = sc.nextLine();
+				erreur = false;
+			} catch (Exception e) {
+				e.printStackTrace();
+				System.out.println("Valeur incorrecte. Veuillez réeffectuer la saisie.");
+				sc = new Scanner(System.in);
+			}
+		}
+		return resultat;
+	}
+
+	public int afficherSupprimerReservation() {
+		int resultat = -1;
+		Scanner sc = new Scanner(System.in);
+		System.out.println("Choisir un numéro de réservation:\n");
+		boolean erreur = true;
+		while(erreur) {
+			try {
+				resultat = sc.nextInt();
+				erreur = false;
+			} catch (Exception e) {
+				e.printStackTrace();
+				System.out.println("Valeur incorrecte. Veuillez réeffectuer la saisie.");
+				sc = new Scanner(System.in);
+			}
+		}
+		return resultat;
+	}
 
 	public ArrayList<String> getListeMenusAccueil() {
 		return listeMenusAccueil;
@@ -374,4 +444,6 @@ public class MenuPrincipal implements Menu {
 	public void setUser(Compte user) {
 		this.user = user;
 	}
+
+
 }

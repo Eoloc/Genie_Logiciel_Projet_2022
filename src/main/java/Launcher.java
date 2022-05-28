@@ -1,8 +1,7 @@
-import fr.ul.miage.Genie_Logiciel_Projet_2022.controller.BorneController;
-import fr.ul.miage.Genie_Logiciel_Projet_2022.controller.CompteController;
-import fr.ul.miage.Genie_Logiciel_Projet_2022.controller.DatabaseController;
-import fr.ul.miage.Genie_Logiciel_Projet_2022.controller.ReservationController;
+import fr.ul.miage.Genie_Logiciel_Projet_2022.controller.*;
 import fr.ul.miage.Genie_Logiciel_Projet_2022.model.Compte;
+import fr.ul.miage.Genie_Logiciel_Projet_2022.model.Reservation;
+import fr.ul.miage.Genie_Logiciel_Projet_2022.model.VehiculeAssociation;
 import fr.ul.miage.Genie_Logiciel_Projet_2022.view.MenuPrincipal;
 import org.ini4j.Ini;
 
@@ -30,6 +29,7 @@ public class Launcher {
         BorneController borneController = new BorneController(bdd);
 		CompteController compteController = new CompteController(bdd);
         ReservationController reservationController = new ReservationController(bdd);
+		VehiculeAssociationController vehiculeAssociationController = new VehiculeAssociationController(bdd);
         for(Compte compte : comptes){
             System.out.println(compte);
         }
@@ -57,6 +57,7 @@ public class Launcher {
         ArrayList<String> listeSousMenus1 = new ArrayList<String>();
         listeSousMenus1.add("Passer réservation");
         listeSousMenus1.add("Visualiser réservations");
+		listeSousMenus1.add("Supprimer réservations");
         listeSousMenus1.add("Modifier réservations");
         listeSousMenus1.add("Voir disponibilités bornes");
 		listeSousMenus1.add("Quitter");
@@ -127,7 +128,6 @@ public class Launcher {
 						c=compteController.inscrire(0,informationInscription[0],informationInscription[1],informationInscription[2],informationInscription[3],
 								Integer.parseInt(informationInscription[4]),true,false,false);
     	        		break;
-
     	        	case 1:
 						//menu connexion
 						String [] information = m.afficherMenuConnexion();
@@ -140,8 +140,6 @@ public class Launcher {
 							System.out.println("Connexion impossible\n");
 						}
 						break;
-
-
     	        	case 2:
     	        		finProgramme = true;
     	        		break;
@@ -152,34 +150,64 @@ public class Launcher {
 				choixUserMenuSecondaire = -1;
             	choixUserMenuSecondaire = m.afficherSousMenu(choixUserMenuPrincipal);
             	switch(choixUserMenuPrincipal) {
-    	        	case 0:
+    	        	case 0: // Gestion Réservation
     	        		switch(choixUserMenuSecondaire) {
-    			        	case 0:
-    			        		
+    			        	case 0: // Créer réservation
     			        		if(c.isEstGerant()) {
     			        			String listeBornes = borneController.consulterEtatBorne();
     			        			m.afficherEtatBornes(listeBornes);
-    			        		}else {
-    			        			System.out.println("Menu réservation");
+    			        		} else {
+									boolean erreur = true;
+									while (erreur){
+										String[] resultat = m.afficherCreerReservation();
+										boolean estPerma = resultat[2].equals("0");
+										VehiculeAssociation association = vehiculeAssociationController.creerAssociation(resultat[3], c.getIdCompte());
+										if(association == null){
+											System.out.println("Aucun véhicule trouvé pour l'immatriculation : " + resultat[3]);
+										} else {
+											try{
+												Reservation newReservation = reservationController.creerReservation(resultat[0], resultat[1], c.getIdCompte(), estPerma);
+												erreur = false;
+												if(newReservation == null){
+													System.out.println("Impossible de créer la réservation");
+												} else {
+													System.out.println("Réservation créée");
+												}
+											} catch (Exception e) {
+												e.printStackTrace();
+												System.out.println("Erreur de saisie dans les dates");
+											}
+										}
+									}
     			        		}
-    			        		//TODO
     			        		break;
-    			        	case 1:
+    			        	case 1: // Consulter toutes les réservations / Ses réservations
 
     			        		if(c.isEstGerant()) {
     			        			//Liste réservations tout clients
     			        			//TODO
-    			        		}else {
+    			        		} else {
     			        			//Liste réservations 
     			        			String listeReserv = reservationController.consulterReservationParUtilisateur(c.getIdCompte());
         			        		m.afficherListeReservations(listeReserv);
     			        		}
-
-    			        		
-    			        		//TODO
-
     			        		break;
-    			        	case 2:
+							case 2: // Supprimer réservation
+								if(!c.isEstGerant()) {
+									int idReservationSupprimer = m.afficherSupprimerReservation();
+									Reservation reservationASuppr = Reservation.getReservationbyId(bdd, idReservationSupprimer);
+									if(reservationASuppr.getIdCompte() == c.getIdCompte()){
+										if(reservationController.supprimerReservation(idReservationSupprimer)){
+											System.out.println("Reservation bien supprimée");
+										} else {
+											System.out.println("Aucune réservation trouvée sous le numéro : " + idReservationSupprimer);
+										}
+									} else {
+										System.out.println("Cette réservation n'est pas a vous");
+									}
+								}
+								break;
+    			        	case 3: // Modification réservation
     			        		System.out.println("Modification réservation");
     			        		if(c.isEstGerant()) {
     			        			
@@ -188,7 +216,7 @@ public class Launcher {
     			        		}
     			        		//TODO
     			        		break;
-    			        	case 3:
+    			        	case 4: // Disponibilité bornes
     			        		System.out.println("Disponibilité bornes");
     			        		if(c.isEstGerant()) {
     			        			
@@ -197,11 +225,11 @@ public class Launcher {
     			        		}
     			        		//TODO
     			        		break;
-							case 4:
+							case 5:
 								break;
     	        		}
     	        		break;
-    	        	case 1:
+    	        	case 1: // Gestion immatriculation
     	        		switch(choixUserMenuSecondaire) {
 			        	case 0:
 			        		System.out.println("Visualiser immatriculations");
@@ -234,7 +262,7 @@ public class Launcher {
 							break;
 		        	}
     	        		break;
-    	        	case 2:
+    	        	case 2: // Gestion informations personnelles
     	        		switch(choixUserMenuSecondaire) {
 			        	case 0:
 			        		//modification informations personnelles
@@ -264,9 +292,7 @@ public class Launcher {
 	        		}
     	        		break;
     	        	case 3:
-    	        		if(c.isEstGerant()) {
-    	        			
-    	        		} else {
+    	        		if(!c.isEstGerant()) {
     	        			c = null;
     						m.setUser(c);
         	        		break;
@@ -276,14 +302,9 @@ public class Launcher {
     	        			c = null;
     						m.setUser(c);
         	        		break;  	        
-    	        		} else {
-    	        			
     	        		}
             	}
             }
         }
-        
-
     }
-
 }
