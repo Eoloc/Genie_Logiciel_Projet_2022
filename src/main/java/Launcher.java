@@ -36,14 +36,9 @@ public class Launcher {
 
 		HistoriqueDepenseController historiqueDepenseController = new HistoriqueDepenseController(bdd);
 
-
+		StatistiqueController statistiqueController = new StatistiqueController();
 
 		VariableController variableController = new VariableController(bdd);
-		variableController.updatePrixDemiHeure(25.00);
-		variableController.updatePrixDemiHeureSurtaxe(50.00);
-		variableController.updatequantiteBorne(25);
-
-
 
 
         ArrayList<ArrayList<String>> listeMenus = new ArrayList<ArrayList<String>>();
@@ -195,9 +190,67 @@ public class Launcher {
     		        	}
     	        		break;
     	        	case 3:
-    	        		c = null;
-						m.setUser(c);
-    	        		break;
+						if(m.getUser().isEstGerant()){
+							System.out.println("\n======Menu administrateur======\n");
+							System.out.println("\n 1-consulter statistiques \n");
+							System.out.println("\n 2-Fixer les prix des services \n");
+							switch (choixUserMenuSecondaire){
+								case 1: {
+									// affichage les statistiques
+									statistiqueController.getStatistiques(bdd);
+								}
+								break;
+								case 2:{
+									//Menu Fixer les prix des services
+									System.out.println("\n======Fixer les prix des services======\n");
+									System.out.println("\n 1-Fixer le prix de demi heure \n");
+									System.out.println("\n 2-Fixer le prix de demi heure surtaxée \n");
+									System.out.println("\n 3-Fixer le nombre des bornes de bornes \n");
+									switch (choixUserMenuSecondaire){
+										case 1: {
+											Scanner sc = new Scanner(System.in);
+											Double nouveauPrix;
+											System.out.println("\n Entrez le nouveau prix ex: 15.00 \n");
+											nouveauPrix = sc.nextDouble();
+											variableController.updatePrixDemiHeure(nouveauPrix);
+										}
+										break;
+										case 2:{
+											Scanner s = new Scanner(System.in);
+											Double nouveauPrixSurtaxe;
+											System.out.println("\n Entrez le nouveau prix ex: 16.00 \n");
+											nouveauPrixSurtaxe = s.nextDouble();
+											variableController.updatePrixDemiHeureSurtaxe(nouveauPrixSurtaxe);
+										}
+										break;
+										case 3:{
+											Scanner scanner = new Scanner(System.in);
+											int nouveauQteBorne;
+											System.out.println("\n Entrez le nouveau quantite des bornes ex: 16 \n");
+											nouveauQteBorne = scanner.nextInt();
+											variableController.updatequantiteBorne(nouveauQteBorne);
+										}
+										break;
+									}
+									break;
+
+								}
+
+							}
+						}
+						else {
+							c = null;
+							m.setUser(c);
+							break;
+						}
+					case 4:
+						if(m.getUser().isEstGerant()){
+							c = null;
+							m.setUser(c);
+							break;
+						}else {
+
+						}
             	}
             }
         }
