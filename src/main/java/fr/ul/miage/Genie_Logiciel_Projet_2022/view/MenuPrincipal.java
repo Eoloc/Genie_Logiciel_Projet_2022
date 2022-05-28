@@ -352,8 +352,14 @@ public class MenuPrincipal implements Menu {
 		affichage += "===============================\n";
 		System.out.println(affichage);
 	}
-
 	
+	public void afficherListeDepenses(String liste) {
+		String affichage = "===============================\n";
+		affichage += "Mes dépenses: \n";
+		affichage += liste;
+		affichage += "===============================\n";
+		System.out.println(affichage);
+	}
 
 	public ArrayList<String> getListeMenusAccueil() {
 		return listeMenusAccueil;

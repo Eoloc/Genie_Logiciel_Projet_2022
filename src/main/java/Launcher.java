@@ -1,6 +1,7 @@
 import fr.ul.miage.Genie_Logiciel_Projet_2022.controller.BorneController;
 import fr.ul.miage.Genie_Logiciel_Projet_2022.controller.CompteController;
 import fr.ul.miage.Genie_Logiciel_Projet_2022.controller.DatabaseController;
+import fr.ul.miage.Genie_Logiciel_Projet_2022.controller.HistoriqueDepenseController;
 import fr.ul.miage.Genie_Logiciel_Projet_2022.controller.ReservationController;
 import fr.ul.miage.Genie_Logiciel_Projet_2022.model.Compte;
 import fr.ul.miage.Genie_Logiciel_Projet_2022.view.MenuPrincipal;
@@ -30,6 +31,7 @@ public class Launcher {
         BorneController borneController = new BorneController(bdd);
 		CompteController compteController = new CompteController(bdd);
         ReservationController reservationController = new ReservationController(bdd);
+        HistoriqueDepenseController historiqueDepenseController = new HistoriqueDepenseController(bdd);
         for(Compte compte : comptes){
             System.out.println(compte);
         }
@@ -255,11 +257,11 @@ public class Launcher {
 			        		m.afficherInformationsPersonnelles();
 			        		break;
 			        	case 2:
-			        		System.out.println("Visualisation dépenses");
 			        		if(c.isEstGerant()) {
 			        			
 			        		}else {
-			        			
+			        			String listeDepenses = historiqueDepenseController.consulterDepenses(c.getIdCompte());
+			        			m.afficherListeDepenses(listeDepenses);
 			        		}
 			        		//TODO
 			        		break;
