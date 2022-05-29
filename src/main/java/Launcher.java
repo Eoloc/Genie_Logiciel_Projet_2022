@@ -8,12 +8,13 @@ import org.ini4j.Ini;
 import java.io.File;
 import java.io.IOException;
 import java.sql.SQLException;
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
 
 public class Launcher {
-    public static void main(String[] args) throws SQLException {
+    public static void main(String[] args) throws SQLException, ParseException {
 		Ini ini = null;
 		try {
 			ini = new Ini(new File("src/main/java/bdd.ini"));
@@ -132,7 +133,6 @@ public class Launcher {
 						//menu connexion
 						String [] information = m.afficherMenuConnexion();
 						c=compteController.seConnecter(information[0], information[1]);
-						System.out.println(c);
 
 						if(c != null){
 							m.setUser(c);
@@ -211,7 +211,6 @@ public class Launcher {
     			        		if(!c.isEstGerant()) {
     			        			String[] resultats = m.afficherModifierReservation();
 									boolean estPermanente = resultats[3].equals("0");
-
 									if(reservationController.modifierReservation(Integer.parseInt(resultats[0]), resultats[1], resultats[2], c.getIdCompte(), estPermanente) == null){
 										System.out.println("Erreur impossible de mettre à jour cette réservation");
 									} else {
