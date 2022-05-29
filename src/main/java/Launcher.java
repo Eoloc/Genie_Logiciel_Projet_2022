@@ -96,6 +96,7 @@ public class Launcher {
         ArrayList<String> listeSousMenusAdmins1 = new ArrayList<String>();
         listeSousMenusAdmins1.add("Consulter états bornes");
         listeSousMenusAdmins1.add("Visualiser réservations par borne");
+		listeSousMenusAdmins1.add("Consulter disponibilités bornes");
         listeSousMenusAdmins1.add("Quitter");
         
         //gestion utilisateurs et réservations
@@ -123,7 +124,6 @@ public class Launcher {
 				choixUserMenuPrincipal = m.afficherMenu();
             	switch(choixUserMenuPrincipal) {
     	        	case 0:
-
 						String [] informationInscription = m.afficherMenuInscription();
 						c=compteController.inscrire(0,informationInscription[0],informationInscription[1],informationInscription[2],informationInscription[3],
 								Integer.parseInt(informationInscription[4]),true,false,false);
@@ -144,15 +144,14 @@ public class Launcher {
     	        		finProgramme = true;
     	        		break;
             	}
-
-            }else {
+            } else {
 				choixUserMenuPrincipal = m.afficherMenu();
 				choixUserMenuSecondaire = -1;
             	choixUserMenuSecondaire = m.afficherSousMenu(choixUserMenuPrincipal);
             	switch(choixUserMenuPrincipal) {
-    	        	case 0: // Gestion Réservation
+    	        	case 0: // Gestion Réservation / borne
     	        		switch(choixUserMenuSecondaire) {
-    			        	case 0: // Créer réservation
+    			        	case 0: // Créer réservation / consulter états bornes
     			        		if(c.isEstGerant()) {
     			        			String listeBornes = borneController.consulterEtatBorne();
     			        			m.afficherEtatBornes(listeBornes);
@@ -184,16 +183,17 @@ public class Launcher {
     			        	case 1: // Consulter toutes les réservations / Ses réservations
 
     			        		if(c.isEstGerant()) {
-    			        			//Liste réservations tout clients
-    			        			//TODO
+
     			        		} else {
     			        			//Liste réservations 
     			        			String listeReserv = reservationController.consulterReservationParUtilisateur(c.getIdCompte());
         			        		m.afficherListeReservations(listeReserv);
     			        		}
     			        		break;
-							case 2: // Supprimer réservation
-								if(!c.isEstGerant()) {
+							case 2: // Supprimer réservation /
+								if(c.isEstGerant()) {
+									System.out.println(borneController.consulterDisponibiliteBorne());
+								} else {
 									int idReservationSupprimer = m.afficherSupprimerReservation();
 									Reservation reservationASuppr = Reservation.getReservationbyId(bdd, idReservationSupprimer);
 									if(reservationASuppr.getIdCompte() == c.getIdCompte()){
@@ -208,22 +208,21 @@ public class Launcher {
 								}
 								break;
     			        	case 3: // Modification réservation
-    			        		System.out.println("Modification réservation");
-    			        		if(c.isEstGerant()) {
-    			        			
-    			        		} else {
-    			        			
+    			        		if(!c.isEstGerant()) {
+    			        			String[] resultats = m.afficherModifierReservation();
+									boolean estPermanente = resultats[3].equals("0");
+
+									if(reservationController.modifierReservation(Integer.parseInt(resultats[0]), resultats[1], resultats[2], c.getIdCompte(), estPermanente) == null){
+										System.out.println("Erreur impossible de mettre à jour cette réservation");
+									} else {
+										System.out.println("Réservation modifiée");
+									}
     			        		}
-    			        		//TODO
     			        		break;
     			        	case 4: // Disponibilité bornes
-    			        		System.out.println("Disponibilité bornes");
-    			        		if(c.isEstGerant()) {
-    			        			
-    			        		}else {
-    			        			
+    			        		if(!c.isEstGerant()) {
+									System.out.println(borneController.consulterDisponibiliteBorne());
     			        		}
-    			        		//TODO
     			        		break;
 							case 5:
 								break;

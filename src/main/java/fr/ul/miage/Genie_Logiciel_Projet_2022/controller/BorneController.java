@@ -32,4 +32,18 @@ public class BorneController {
         }
         return res.toString();
     }
+
+    public String consulterDisponibiliteBorne() throws SQLException {
+        StringBuilder res = new StringBuilder();
+        ArrayList<Borne> bornes = Borne.getAllBorne(bdd);
+        for(Borne borne : bornes){
+            if(borne.getEtatBorne().equals("Disponible")){
+                res.append("Borne ").append(borne.getIdBorne()).append(": "+borne.getEtatBorne()+"\n");
+            }
+        }
+        if(res.isEmpty()){
+            res.append("Aucune borne disponible");
+        }
+        return res.toString();
+    }
 }

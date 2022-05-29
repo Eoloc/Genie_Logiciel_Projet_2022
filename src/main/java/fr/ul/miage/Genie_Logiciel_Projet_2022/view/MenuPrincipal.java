@@ -417,6 +417,63 @@ public class MenuPrincipal implements Menu {
 		return resultat;
 	}
 
+	public String[] afficherModifierReservation() {
+		String[] resultats = new String[4];
+		Scanner sc = new Scanner(System.in);
+		System.out.println("Choisir un numéro de réservation:\n");
+		boolean erreur = true;
+		while(erreur) {
+			try {
+				resultats[0] = String.valueOf(sc.nextInt());
+				erreur = false;
+			} catch (Exception e) {
+				e.printStackTrace();
+				System.out.println("Valeur incorrecte. Veuillez réeffectuer la saisie.");
+				sc = new Scanner(System.in);
+			}
+		}
+		sc = new Scanner(System.in);
+		System.out.println("Choisir une date de début de réservation (exemple:  2022-05-28 15:30:00):\n");
+		erreur = true;
+		while(erreur) {
+			try {
+				resultats[1] = String.valueOf(sc.nextLine());
+				erreur = false;
+			} catch (Exception e) {
+				e.printStackTrace();
+				System.out.println("Valeur incorrecte. Veuillez réeffectuer la saisie.");
+				sc = new Scanner(System.in);
+			}
+		}
+		sc = new Scanner(System.in);
+		System.out.println("Choisir une date de fin de réservation (exemple:  2022-05-28 16:30:00):\n");
+		erreur = true;
+		while(erreur) {
+			try {
+				resultats[2] = String.valueOf(sc.nextLine());
+				erreur = false;
+			} catch (Exception e) {
+				e.printStackTrace();
+				System.out.println("Valeur incorrecte. Veuillez réeffectuer la saisie.");
+				sc = new Scanner(System.in);
+			}
+		}
+		sc = new Scanner(System.in);
+		System.out.println("La réservation est-elle permanente ? 0: Oui, 1: Non\n");
+		erreur = true;
+		while(erreur) {
+			try {
+				resultats[3] = String.valueOf(sc.nextInt());
+				erreur = false;
+			} catch (Exception e) {
+				e.printStackTrace();
+				System.out.println("Valeur incorrecte. Veuillez réeffectuer la saisie.");
+				sc = new Scanner(System.in);
+			}
+		}
+		return resultats;
+	}
+
 	public ArrayList<String> getListeMenusAccueil() {
 		return listeMenusAccueil;
 	}
@@ -444,6 +501,7 @@ public class MenuPrincipal implements Menu {
 	public void setUser(Compte user) {
 		this.user = user;
 	}
+
 
 
 }

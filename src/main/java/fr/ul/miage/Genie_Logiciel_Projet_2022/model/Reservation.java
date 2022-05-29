@@ -5,6 +5,8 @@ import java.util.ArrayList;
 
 import fr.ul.miage.Genie_Logiciel_Projet_2022.controller.DatabaseController;
 
+import javax.xml.crypto.Data;
+
 public class Reservation {
 	private int idReservation;
 	private String dateDebut;
@@ -27,6 +29,8 @@ public class Reservation {
 		this.idBorne = idBorne;
 		this.estPermanente = estPermanente;
 	}
+
+
 
 	@Override
     public String toString() {
@@ -129,7 +133,6 @@ public class Reservation {
 			pstmt.setBoolean(6, estPermanente);
 			pstmt.executeUpdate();
 		} catch (SQLException ex) {
-			System.out.println(ex.getMessage());
 			return null;
 		}
 		return getReservationbyDateAndUser(bdd, dateDebut, dateFin, idCompte);
@@ -141,11 +144,20 @@ public class Reservation {
 			PreparedStatement pstmt = bdd.getCon().prepareStatement(sql);
 			pstmt.executeUpdate();
 		} catch (SQLException ex) {
-			System.out.println(ex.getMessage());
 			return false;
 		}
 		return true;
+	}
 
+	public static Boolean updateReservation(DatabaseController bdd, int idReservation, String dateDebut, String dateFin, boolean estPermanente, int idBorne) {
+		String sql = "UPDATE reservation SET dateDebut='" + dateDebut + "', dateFin='" + dateFin + "', estPermanente='" + estPermanente + "', idBorne='" + idBorne +"' WHERE idReservation='" + idReservation +"'";
+		try {
+			PreparedStatement pstmt = bdd.getCon().prepareStatement(sql);
+			pstmt.executeUpdate();
+		} catch (SQLException ex) {
+			return false;
+		}
+		return true;
 	}
 	
 	public int getIdReservation() {

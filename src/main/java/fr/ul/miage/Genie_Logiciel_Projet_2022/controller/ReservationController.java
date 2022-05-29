@@ -26,9 +26,40 @@ public class ReservationController {
         ArrayList<Reservation> reservationsPendantDate = Reservation.getAllReservationBetweenDates(bdd, dateDebut, dateFin);
         ArrayList<Borne> bornesASupprimer = new ArrayList<>();
 
-        for(Reservation res : reservationsPendantDate){
-            System.out.println("Reservation: " + res.getIdReservation() + "debut: " + res.getDateDebut() + "fin: " + res.getDateFin() + "idCompte: " + res.getIdCompte() + "idBorne: " + res.getIdBorne());
+        for(Borne borne : bornesDispo){
+            for(Reservation reservation : reservationsPendantDate){
+                if(borne.getIdBorne() == reservation.getIdBorne()){
+                    bornesASupprimer.add(borne);
+                    break;
+                }
+            }
         }
+        for(Borne borneDejaPrise : bornesASupprimer){
+            bornesDispo.remove(borneDejaPrise);
+        }
+        if(bornesDispo.size() == 0){
+            return null;
+        }
+
+        Borne borne = bornesDispo.get(0);
+        return Reservation.insertNewReservation(bdd, dateDebut, dateFin, "En attente", idCompte, borne.getIdBorne(), estPermanente);
+    }
+
+    public Boolean supprimerReservation(int idReservation) throws SQLException {
+        Reservation reservation = Reservation.getReservationbyId(bdd, idReservation);
+        return reservation.deleteReservation(bdd, reservation);
+    }
+
+    public Reservation modifierReservation(int idReservation,String dateDebut, String dateFin, int idCompte, boolean estPermanent) throws SQLException {
+        ArrayList<Borne> bornesDispo = Borne.getAllBorneByEtat(bdd, "Disponible");
+        ArrayList<Reservation> reservationsPendantDate = new ArrayList<>();
+        try {
+            reservationsPendantDate = Reservation.getAllReservationBetweenDates(bdd, dateDebut, dateFin);
+        } catch (Exception e) {
+            return null;
+        }
+
+        ArrayList<Borne> bornesASupprimer = new ArrayList<>();
 
         for(Borne borne : bornesDispo){
             for(Reservation reservation : reservationsPendantDate){
@@ -39,7 +70,6 @@ public class ReservationController {
             }
         }
         for(Borne borneDejaPrise : bornesASupprimer){
-            System.out.println("Borne déjà prise : " + borneDejaPrise.getIdBorne());
             bornesDispo.remove(borneDejaPrise);
         }
         if(bornesDispo.size() == 0){
@@ -47,12 +77,20 @@ public class ReservationController {
         }
 
         Borne borne = bornesDispo.get(0);
-        System.out.println("Borne: "+borne.getIdBorne());
-        return Reservation.insertNewReservation(bdd, dateDebut, dateFin, "En attente", idCompte, borne.getIdBorne(), estPermanente);
-    }
-
-    public Boolean supprimerReservation(int idReservation) throws SQLException {
-        Reservation reservation = Reservation.getReservationbyId(bdd, idReservation);
-        return reservation.deleteReservation(bdd, reservation);
+        try {
+            if(Reservation.getReservationbyId(bdd, idReservation).getIdCompte() != idCompte) {
+                return null;
+            }
+        } catch(Exception e){
+            return null;
+        }
+        try {
+            if (Reservation.updateReservation(bdd, idReservation, dateDebut, dateFin, estPermanent, borne.getIdBorne())) {
+                return Reservation.getReservationbyId(bdd, idReservation);
+            }
+        } catch (Exception e) {
+            return null;
+        }
+        return null;
     }
 }
